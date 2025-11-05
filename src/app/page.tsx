@@ -1,7 +1,6 @@
+import { redirect } from "next/navigation";
+
 export default function HomePage() {
-  return (
-    <div>
-      Selamat datang di aplikasi b13garment!
-    </div>
-  );
+  redirect("/login"); // Atau "/dashboard" jika ingin langsung dashboard
+  return null;
 }
