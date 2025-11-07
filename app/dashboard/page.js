@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { supabase, signOut } from '@/lib/supabase'
+import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card'
 import { LogOut, Loader2, Package, ShoppingCart, TrendingUp, Users } from 'lucide-react'
@@ -12,31 +12,46 @@ export default function DashboardPage() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
+  // 🔒 Cek user login dari session Supabase
   useEffect(() => {
-    checkUser()
-  }, [])
+    const checkUser = async () => {
+      try {
+        // Cek session dulu (lebih stabil daripada getUser())
+        const { data: sessionData, error } = await supabase.auth.getSession()
+        if (error) throw error
 
-  const checkUser = async () => {
-    try {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) {
+        const session = sessionData?.session
+        const currentUser = session?.user
+
+        // Jika tidak ada user aktif, kembali ke login
+        if (!session || !currentUser) {
+          router.push('/')
+          return
+        }
+
+        setUser(currentUser)
+      } catch (error) {
+        console.error('Error checking user:', error)
         router.push('/')
-        return
+      } finally {
+        setLoading(false)
       }
-      setUser(user)
-    } catch (error) {
-      console.error('Error checking user:', error)
+    }
+
+    checkUser()
+  }, [router])
+
+  // 🚪 Logout
+  const handleLogout = async () => {
+    try {
+      await supabase.auth.signOut()
       router.push('/')
-    } finally {
-      setLoading(false)
+    } catch (error) {
+      console.error('Error logging out:', error)
     }
   }
 
-  const handleLogout = async () => {
-    await signOut()
-    router.push('/')
-  }
-
+  // 🌀 Loading state
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-background">
@@ -45,6 +60,7 @@ export default function DashboardPage() {
     )
   }
 
+  // 🖥️ Tampilan dashboard (TIDAK DIUBAH)
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -83,7 +99,9 @@ export default function DashboardPage() {
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-foreground mb-2">Dashboard</h2>
-          <p className="text-muted-foreground">Selamat datang di sistem manajemen B13 Garment</p>
+          <p className="text-muted-foreground">
+            Selamat datang di sistem manajemen B13 Garment
+          </p>
         </div>
 
         {/* Stats Grid */}
