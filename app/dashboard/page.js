@@ -12,19 +12,30 @@ export default function DashboardPage() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  // 🔒 Cek user login dari session Supabase
   useEffect(() => {
     const checkUser = async () => {
       try {
-        // Cek session dulu (lebih stabil daripada getUser())
+        // Cek session lebih stabil daripada getUser langsung
         const { data: sessionData, error } = await supabase.auth.getSession()
         if (error) throw error
 
-        const session = sessionData?.session
-        const currentUser = session?.user
+        let session = sessionData?.session
+        let currentUser = session?.user
 
-        // Jika tidak ada user aktif, kembali ke login
+        // Jika session belum ada, coba polling singkat (karena penulisan cookie mungkin delay)
         if (!session || !currentUser) {
+          let tries = 0
+          while (tries < 8 && (!session || !currentUser)) {
+            await new Promise((r) => setTimeout(r, 300))
+            const { data: s2 } = await supabase.auth.getSession()
+            session = s2?.session
+            currentUser = session?.user
+            tries++
+          }
+        }
+
+        if (!session || !currentUser) {
+          // Tidak ada session: redirect ke login
           router.push('/')
           return
         }
@@ -41,7 +52,6 @@ export default function DashboardPage() {
     checkUser()
   }, [router])
 
-  // 🚪 Logout
   const handleLogout = async () => {
     try {
       await supabase.auth.signOut()
@@ -51,7 +61,6 @@ export default function DashboardPage() {
     }
   }
 
-  // 🌀 Loading state
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-background">
@@ -60,7 +69,6 @@ export default function DashboardPage() {
     )
   }
 
-  // 🖥️ Tampilan dashboard (TIDAK DIUBAH)
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -99,9 +107,7 @@ export default function DashboardPage() {
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-foreground mb-2">Dashboard</h2>
-          <p className="text-muted-foreground">
-            Selamat datang di sistem manajemen B13 Garment
-          </p>
+          <p className="text-muted-foreground">Selamat datang di sistem manajemen B13 Garment</p>
         </div>
 
         {/* Stats Grid */}
