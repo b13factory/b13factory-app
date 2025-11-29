@@ -87,6 +87,11 @@ export default function OrderanPage() {
         fetch('/api/katalog/jasa').then(r => r.json())
       ]);
       
+      console.log('📦 Produk loaded:', produkRes?.length || 0, 'items');
+      console.log('🧵 Bahan loaded:', bahanRes?.length || 0, 'items');
+      console.log('🖨️  Percetakan loaded:', percetakanRes?.length || 0, 'items');
+      console.log('🛠️  Jasa loaded:', jasaRes?.length || 0, 'items');
+
       setProdukList(produkRes || []);
       setBahanList(bahanRes || []);
       setPercetakanList(percetakanRes || []);
@@ -561,10 +566,17 @@ export default function OrderanPage() {
   function hitungTotalBiayaProduksi() {
     let total = 0;
 
+    // Hitung biaya kain/bahan
+    biayaProduksi.kain.forEach(item => {
+      total += (parseFloat(item.harga) || 0) * (parseFloat(item.jumlah) || 0);
+    });
+
+    // Hitung biaya percetakan
     biayaProduksi.percetakan.forEach(item => {
       total += (parseFloat(item.harga) || 0) * (parseFloat(item.jumlah) || 0);
     });
 
+    // Hitung biaya jasa
     biayaProduksi.jasa.forEach(item => {
       total += (parseFloat(item.harga) || 0) * (parseFloat(item.jumlah) || 0);
     });
@@ -668,6 +680,7 @@ Sisa: ${formatRupiah(totalTagihan - formData.dp)}`);
   function getKategoriOptions() {
     // Ambil dari kategori_produk di database Supabase
     const categories = [...new Set(produkList.map(p => p.kategori_produk).filter(Boolean))];
+    console.log('🏷️  Kategori options:', categories);
     return categories.sort();
   }
 
@@ -877,13 +890,14 @@ Sisa: ${formatRupiah(totalTagihan - formData.dp)}`);
                   <Select
                     value={p.kategori}
                     onValueChange={(value) => {
+                      console.log('✅ Kategori selected:', value);
                       updatePesanan(p.id, 'kategori', value);
                       updatePesanan(p.id, 'jenis', '');
                       updatePesanan(p.id, 'model', '');
                       updatePesanan(p.id, 'tipe_desain', '');
                     }}
                   >
-                    <SelectTrigger>
+                    <SelectTrigger data-testid={`kategori-select-${idx}`}>
                       <SelectValue placeholder="-- Pilih Kategori --" />
                     </SelectTrigger>
                     <SelectContent>
@@ -1463,7 +1477,11 @@ Sisa: ${formatRupiah(totalTagihan - formData.dp)}`);
                   type="button"
                   variant="outline"
                   size="sm"
-                  onClick={tambahBiayaKain}
+                  onClick={() => {
+                    console.log('🔘 Button Tambah Kain clicked');
+                    tambahBiayaKain();
+                  }}
+                  data-testid="tambah-biaya-kain"
                 >
                   <Plus className="h-4 w-4 mr-2" />
                   Tambah
