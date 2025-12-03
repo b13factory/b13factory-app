@@ -12,7 +12,8 @@ import {
   LuMenu, 
   LuX,
   LuHistory,
-  LuClipboardList
+  LuClipboardList,
+  LuFileText
 } from 'react-icons/lu';
 
 const navItems = [
@@ -21,6 +22,7 @@ const navItems = [
   { name: 'Katalog Bahan', href: '/katalog', icon: LuPackage },
   { name: 'History', href: '/history', icon: LuHistory },
   { name: 'Neraca', href: '/neraca', icon: LuBook },
+  { name: 'Nota', href: '/nota', icon: LuFileText },
 ];
 
 export default function Sidebar() {

@@ -72,3 +72,41 @@
 body {
   background-color: #f1f5f9; /* bg-slate-100 */
 }
+
+/* Print Styles untuk Nota */
+@media print {
+  body {
+    background-color: white;
+  }
+  
+  /* Hide elements when printing */
+  .print\:hidden {
+    display: none !important;
+  }
+  
+  /* Ensure nota takes full page */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  
+  /* Remove shadows and rounded corners for print */
+  .print\:shadow-none {
+    box-shadow: none !important;
+  }
+  
+  .print\:rounded-none {
+    border-radius: 0 !important;
+  }
+  
+  /* Ensure proper page breaks */
+  .nota-content {
+    page-break-inside: avoid;
+  }
+  
+  /* Optimize colors for print */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

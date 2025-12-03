@@ -223,6 +223,27 @@ export default function DashboardPage() {
                   const isPaid = (order.sisa || 0) === 0;
                   const deadlinePassed = isDeadlinePassed(order.deadline);
                   
+                  // Parse items_data untuk menampilkan produk
+                  let produkList = [];
+                  try {
+                    if (order.items_data) {
+                      const itemsData = typeof order.items_data === 'string' 
+                        ? JSON.parse(order.items_data) 
+                        : order.items_data;
+                      
+                      if (itemsData.pesanan && Array.isArray(itemsData.pesanan)) {
+                        produkList = itemsData.pesanan.map(p => ({
+                          jenis_produk: p.kategori_produk || '',
+                          jenis: p.jenis || '',
+                          model: p.model || '',
+                          tipe_desain: p.tipe_desain || ''
+                        }));
+                      }
+                    }
+                  } catch (e) {
+                    console.error('Error parsing items_data:', e);
+                  }
+                  
                   return (
                     <tr key={order.id} className="hover:bg-gray-50 transition-colors">
                       <td className="px-6 py-4">
@@ -239,10 +260,26 @@ export default function DashboardPage() {
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        <div className="flex items-center gap-2">
-                          <Package size={16} className="text-gray-400" />
-                          <span className="text-gray-700">{order.jenis_produk || '-'}</span>
-                        </div>
+                        {produkList.length > 0 ? (
+                          <div className="space-y-2">
+                            {produkList.map((produk, idx) => (
+                              <div key={idx}>
+                                <div className="flex items-center gap-2">
+                                  <Package size={14} className="text-gray-400" />
+                                  <span className="text-sm font-medium text-gray-700">{produk.jenis_produk}</span>
+                                </div>
+                                <div className="text-xs text-gray-500 ml-5">
+                                  {[produk.jenis, produk.model, produk.tipe_desain]
+                                    .filter(Boolean)
+                                    .join(' / ')}
+                                </div>
+                                {idx < produkList.length - 1 && <hr className="my-2 border-gray-200" />}
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <span className="text-gray-500">-</span>
+                        )}
                       </td>
                       <td className="px-6 py-4">
                         <div className="space-y-1">
