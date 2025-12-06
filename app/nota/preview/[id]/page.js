@@ -492,25 +492,25 @@ export default function PreviewNotaPage() {
             {/* Header */}
             <div className="mb-4">
               {/* Company Info - Left Aligned with Logo */}
-              <div className="flex items-start gap-4 mb-3">
+              <div className="flex items-start gap-3 mb-3">
                 {/* Logo */}
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 mt-4">
                   <img 
                     src="/LOGO-NOTA.png" 
                     alt="B13 Garment & Adv Logo" 
-                    className="w-20 h-20 object-contain"
+                    className="w-20 h-20 object-right-bottom"
                   />
                 </div>
                 
                 {/* Company Details */}
                 <div className="flex-1">
-                  <h1 className="text-3xl font-bold text-black mb-1">
+                  <h1 className="text-3xl font-bold text-black mb-2">
                     B13 Garment & Advertising
                   </h1>
-                  <p className="text-sm text-black mt-0">
+                  <p className="text-sm text-black leading-relaxed mt-1">
                     Jl. Arowana, Prm. Kebonagung Indah Blk.13 No.16, Kec.Kaliwates - Jember
                   </p>
-                  <p className="text-sm text-black mt-0">
+                  <p className="text-sm text-black mb-1 mt-0">
                     No. Hp : 081234036663 / Email : b13factory@gmail.com
                   </p>
                 </div>
