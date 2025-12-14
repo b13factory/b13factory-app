@@ -566,16 +566,16 @@ export default function KatalogPage() {
   }
 
   return (
-    <div className="space-y-6 pb-8">
+    <div className="space-y-4 sm:space-y-6 pb-8">
       {/* Header */}
-      <div className="bg-gradient-to-r from-sky-600 to-sky-500 p-8 rounded-xl shadow-lg">
-        <div className="flex items-center gap-4 mb-2">
-          <div className="p-3 bg-white/20 backdrop-blur-sm rounded-xl">
-            <Package className="text-white" size={32} />
+      <div className="bg-gradient-to-r from-sky-600 to-sky-500 p-4 sm:p-6 lg:p-8 rounded-lg sm:rounded-xl shadow-lg">
+        <div className="flex items-center gap-3 sm:gap-4 mb-2">
+          <div className="p-2 sm:p-3 bg-white/20 backdrop-blur-sm rounded-lg sm:rounded-xl">
+            <Package className="text-white" size={24} />
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-white">Katalog Bahan</h1>
-            <p className="text-sky-100 mt-1">Kelola katalog produk, kain, percetakan, dan jasa</p>
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">Katalog Bahan</h1>
+            <p className="text-sky-100 mt-0.5 sm:mt-1 text-xs sm:text-sm">Kelola katalog produk, kain, percetakan, dan jasa</p>
           </div>
         </div>
       </div>
@@ -988,70 +988,148 @@ function ProdukTable({ data, onEdit, onDelete, onDuplicate }) {
   }
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-gray-200">
-      <table className="w-full">
-        <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
-          <tr>
-            <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">ID</th>
-            <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">Kategori</th>
-            <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">Produk</th>
-            <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">Jenis</th>
-            <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">Model</th>
-            <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">Tipe/Desain</th>
-            <th className="px-6 py-4 text-center text-sm font-bold text-gray-700">Aksi</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-gray-200 bg-white">
-          {data.map((item, index) => (
-            <tr key={item.id} className="hover:bg-sky-50 transition-colors">
-              <td className="px-6 py-4 text-sm text-gray-900 font-mono bg-gray-50">{item.id}</td>
-              <td className="px-6 py-4">
+    <>
+      {/* Desktop View - Table */}
+      <div className="hidden md:block overflow-x-auto rounded-lg border border-gray-200">
+        <table className="w-full">
+          <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
+            <tr>
+              <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">ID</th>
+              <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">Kategori</th>
+              <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">Produk</th>
+              <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">Jenis</th>
+              <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">Model</th>
+              <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">Tipe/Desain</th>
+              <th className="px-6 py-4 text-center text-sm font-bold text-gray-700">Aksi</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-200 bg-white">
+            {data.map((item, index) => (
+              <tr key={item.id} className="hover:bg-sky-50 transition-colors">
+                <td className="px-6 py-4 text-sm text-gray-900 font-mono bg-gray-50">{item.id}</td>
+                <td className="px-6 py-4">
+                  {item.kategori_produk && (
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-sky-100 text-sky-800">
+                      {item.kategori_produk}
+                    </span>
+                  )}
+                </td>
+                <td className="px-6 py-4 text-sm text-gray-900 font-semibold">{item.produk}</td>
+                <td className="px-6 py-4 text-sm text-gray-700">{item.jenis}</td>
+                <td className="px-6 py-4 text-sm text-gray-700">{item.model}</td>
+                <td className="px-6 py-4 text-sm text-gray-700">{item.tipe_desain || '-'}</td>
+                <td className="px-6 py-4">
+                  <div className="flex items-center justify-center gap-2">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => onDuplicate(item)}
+                      className="text-sky-600 hover:text-sky-700 hover:bg-sky-10"
+                      title="Duplikat"
+                    >
+                      <Copy size={18} />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => onEdit(item)}
+                      className="text-amber-600 hover:text-amber-700 hover:bg-amber-5"
+                      title="Edit"
+                    >
+                      <Edit size={18} />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => onDelete(item)}
+                      className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                      title="Hapus"
+                    >
+                      <Trash2 size={18} />
+                    </Button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Mobile View - Cards */}
+      <div className="md:hidden space-y-4">
+        {data.map((item) => (
+          <div key={item.id} className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+            <div className="bg-gradient-to-r from-sky-50 to-sky-100 px-4 py-3 border-b border-sky-200">
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex-1">
+                  <p className="text-xs font-medium text-gray-500 mb-1">ID Produk</p>
+                  <p className="text-sm font-mono font-bold text-gray-900">{item.id}</p>
+                </div>
                 {item.kategori_produk && (
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-sky-100 text-sky-800">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-sky-600 text-white shadow-sm">
                     {item.kategori_produk}
                   </span>
                 )}
-              </td>
-              <td className="px-6 py-4 text-sm text-gray-900 font-semibold">{item.produk}</td>
-              <td className="px-6 py-4 text-sm text-gray-700">{item.jenis}</td>
-              <td className="px-6 py-4 text-sm text-gray-700">{item.model}</td>
-              <td className="px-6 py-4 text-sm text-gray-700">{item.tipe_desain || '-'}</td>
-              <td className="px-6 py-4">
-                <div className="flex items-center justify-center gap-2">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => onDuplicate(item)}
-                    className="text-sky-600 hover:text-sky-700 hover:bg-sky-100"
-                    title="Duplikat"
-                  >
-                    <Copy size={18} />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => onEdit(item)}
-                    className="text-amber-600 hover:text-amber-700 hover:bg-amber-50"
-                    title="Edit"
-                  >
-                    <Edit size={18} />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => onDelete(item)}
-                    className="text-red-600 hover:text-red-700 hover:bg-red-50"
-                    title="Hapus"
-                  >
-                    <Trash2 size={18} />
-                  </Button>
+              </div>
+            </div>
+            
+            <div className="p-4 space-y-3">
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <p className="text-xs font-medium text-gray-500 mb-1">Produk</p>
+                  <p className="text-sm font-semibold text-gray-900">{item.produk}</p>
                 </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+                <div>
+                  <p className="text-xs font-medium text-gray-500 mb-1">Jenis</p>
+                  <p className="text-sm text-gray-700">{item.jenis}</p>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <p className="text-xs font-medium text-gray-500 mb-1">Model</p>
+                  <p className="text-sm text-gray-700">{item.model}</p>
+                </div>
+                <div>
+                  <p className="text-xs font-medium text-gray-500 mb-1">Tipe/Desain</p>
+                  <p className="text-sm text-gray-700">{item.tipe_desain || '-'}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="px-4 py-3 bg-gray-50 border-t border-gray-200 flex gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onDuplicate(item)}
+                className="flex-1 text-sky-600 border-sky-300 hover:bg-sky-50 hover:border-sky-400"
+              >
+                <Copy size={16} className="mr-1" />
+                Duplikat
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onEdit(item)}
+                className="flex-1 text-amber-600 border-amber-300 hover:bg-amber-50 hover:border-amber-400"
+              >
+                <Edit size={16} className="mr-1" />
+                Edit
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onDelete(item)}
+                className="flex-1 text-red-600 border-red-300 hover:bg-red-50 hover:border-red-400"
+              >
+                <Trash2 size={16} className="mr-1" />
+                Hapus
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
 
@@ -1067,68 +1145,146 @@ function KainTable({ data, onEdit, onDelete, onDuplicate }) {
   }
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-gray-200">
-      <table className="w-full">
-        <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
-          <tr>
-            <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">ID</th>
-            <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">Toko</th>
-            <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">Jenis Kain</th>
-            <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">Warna</th>
-            <th className="px-6 py-4 text-right text-sm font-bold text-gray-700">Harga/kg</th>
-            <th className="px-6 py-4 text-center text-sm font-bold text-gray-700">Aksi</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-gray-200 bg-white">
-          {data.map((item) => (
-            <tr key={item.id} className="hover:bg-sky-50 transition-colors">
-              <td className="px-6 py-4 text-sm text-gray-900 font-mono bg-gray-50">{item.id}</td>
-              <td className="px-6 py-4 text-sm text-gray-900 font-semibold">{item.nama_toko}</td>
-              <td className="px-6 py-4 text-sm text-gray-700">{item.jenis}</td>
-              <td className="px-6 py-4">
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                  {item.warna}
-                </span>
-              </td>
-              <td className="px-6 py-4 text-sm text-gray-900 text-right font-bold">
-                {formatRupiah(item.harga)}
-              </td>
-              <td className="px-6 py-4">
-                <div className="flex items-center justify-center gap-2">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => onDuplicate(item)}
-                    className="text-sky-600 hover:text-sky-700 hover:bg-sky-100"
-                    title="Duplikat"
-                  >
-                    <Copy size={18} />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => onEdit(item)}
-                    className="text-amber-600 hover:text-amber-700 hover:bg-amber-50"
-                    title="Edit"
-                  >
-                    <Edit size={18} />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => onDelete(item)}
-                    className="text-red-600 hover:text-red-700 hover:bg-red-50"
-                    title="Hapus"
-                  >
-                    <Trash2 size={18} />
-                  </Button>
-                </div>
-              </td>
+    <>
+      {/* Desktop View - Table */}
+      <div className="hidden md:block overflow-x-auto rounded-lg border border-gray-200">
+        <table className="w-full">
+          <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
+            <tr>
+              <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">ID</th>
+              <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">Toko</th>
+              <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">Jenis Kain</th>
+              <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">Warna</th>
+              <th className="px-6 py-4 text-right text-sm font-bold text-gray-700">Harga/kg</th>
+              <th className="px-6 py-4 text-center text-sm font-bold text-gray-700">Aksi</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody className="divide-y divide-gray-200 bg-white">
+            {data.map((item) => (
+              <tr key={item.id} className="hover:bg-sky-50 transition-colors">
+                <td className="px-6 py-4 text-sm text-gray-900 font-mono bg-gray-50">{item.id}</td>
+                <td className="px-6 py-4 text-sm text-gray-900 font-semibold">{item.nama_toko}</td>
+                <td className="px-6 py-4 text-sm text-gray-700">{item.jenis}</td>
+                <td className="px-6 py-4">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                    {item.warna}
+                  </span>
+                </td>
+                <td className="px-6 py-4 text-sm text-gray-900 text-right font-bold">
+                  {formatRupiah(item.harga)}
+                </td>
+                <td className="px-6 py-4">
+                  <div className="flex items-center justify-center gap-2">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => onDuplicate(item)}
+                      className="text-sky-600 hover:text-sky-700 hover:bg-sky-100"
+                      title="Duplikat"
+                    >
+                      <Copy size={18} />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => onEdit(item)}
+                      className="text-amber-600 hover:text-amber-700 hover:bg-amber-50"
+                      title="Edit"
+                    >
+                      <Edit size={18} />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => onDelete(item)}
+                      className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                      title="Hapus"
+                    >
+                      <Trash2 size={18} />
+                    </Button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Mobile View - Cards */}
+      <div className="md:hidden space-y-4">
+        {data.map((item) => (
+          <div key={item.id} className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+            <div className="bg-gradient-to-r from-sky-50 to-sky-100 px-4 py-3 border-b border-sky-200">
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex-1">
+                  <p className="text-xs font-medium text-gray-500 mb-1">ID Kain</p>
+                  <p className="text-sm font-mono font-bold text-gray-900">{item.id}</p>
+                </div>
+                <div className="bg-gradient-to-br from-sky-600 to-sky-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-sm">
+                  <Shirt size={16} className="inline mr-1" />
+                  Kain
+                </div>
+              </div>
+            </div>
+            
+            <div className="p-4 space-y-3">
+              <div>
+                <p className="text-xs font-medium text-gray-500 mb-1">Nama Toko</p>
+                <p className="text-base font-bold text-gray-900">{item.nama_toko}</p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <p className="text-xs font-medium text-gray-500 mb-1">Jenis Kain</p>
+                  <p className="text-sm text-gray-700">{item.jenis}</p>
+                </div>
+                <div>
+                  <p className="text-xs font-medium text-gray-500 mb-1">Warna</p>
+                  <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                    {item.warna}
+                  </span>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-3 rounded-lg border border-green-200">
+                <p className="text-xs font-medium text-gray-600 mb-1">Harga per kg</p>
+                <p className="text-lg font-bold text-green-700">{formatRupiah(item.harga)}</p>
+              </div>
+            </div>
+
+            <div className="px-4 py-3 bg-gray-50 border-t border-gray-200 flex gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onDuplicate(item)}
+                className="flex-1 text-sky-600 border-sky-300 hover:bg-sky-50 hover:border-sky-400"
+              >
+                <Copy size={16} className="mr-1" />
+                Duplikat
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onEdit(item)}
+                className="flex-1 text-amber-600 border-amber-300 hover:bg-amber-50 hover:border-amber-400"
+              >
+                <Edit size={16} className="mr-1" />
+                Edit
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onDelete(item)}
+                className="flex-1 text-red-600 border-red-300 hover:bg-red-50 hover:border-red-400"
+              >
+                <Trash2 size={16} className="mr-1" />
+                Hapus
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
 
@@ -1144,8 +1300,10 @@ function PercetakanTable({ data, onEdit, onDelete, onDuplicate }) {
   }
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-gray-200">
-      <table className="w-full">
+    <>
+      {/* Desktop View - Table */}
+      <div className="hidden md:block overflow-x-auto rounded-lg border border-gray-200">
+        <table className="w-full">
         <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
           <tr>
             <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">ID</th>
@@ -1202,6 +1360,80 @@ function PercetakanTable({ data, onEdit, onDelete, onDuplicate }) {
         </tbody>
       </table>
     </div>
+
+    {/* Mobile View - Cards */}
+      <div className="md:hidden space-y-4">
+        {data.map((item) => (
+          <div key={item.id} className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+            <div className="bg-gradient-to-r from-sky-50 to-sky-100 px-4 py-3 border-b border-sky-200">
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex-1">
+                  <p className="text-xs font-medium text-gray-500 mb-1">ID Percetakan</p>
+                  <p className="text-sm font-mono font-bold text-gray-900">{item.id}</p>
+                </div>
+                <div className="bg-gradient-to-br from-sky-600 to-sky-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-sm">
+                  <Printer size={16} className="inline mr-1" />
+                  Cetak
+                </div>
+              </div>
+            </div>
+            
+            <div className="p-4 space-y-3">
+              <div>
+                <p className="text-xs font-medium text-gray-500 mb-1">Jenis Percetakan</p>
+                <p className="text-base font-bold text-gray-900">{item.jenis}</p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <p className="text-xs font-medium text-gray-500 mb-1">Model</p>
+                  <p className="text-sm text-gray-700">{item.model}</p>
+                </div>
+                <div>
+                  <p className="text-xs font-medium text-gray-500 mb-1">Tipe/Ukuran</p>
+                  <p className="text-sm text-gray-700">{item.tipe_ukuran}</p>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-3 rounded-lg border border-green-200">
+                <p className="text-xs font-medium text-gray-600 mb-1">Harga</p>
+                <p className="text-lg font-bold text-green-700">{formatRupiah(item.harga)}</p>
+              </div>
+            </div>
+
+            <div className="px-4 py-3 bg-gray-50 border-t border-gray-200 flex gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onDuplicate(item)}
+                className="flex-1 text-sky-600 border-sky-300 hover:bg-sky-50 hover:border-sky-400"
+              >
+                <Copy size={16} className="mr-1" />
+                Duplikat
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onEdit(item)}
+                className="flex-1 text-amber-600 border-amber-300 hover:bg-amber-50 hover:border-amber-400"
+              >
+                <Edit size={16} className="mr-1" />
+                Edit
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onDelete(item)}
+                className="flex-1 text-red-600 border-red-300 hover:bg-red-50 hover:border-red-400"
+              >
+                <Trash2 size={16} className="mr-1" />
+                Hapus
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
 
@@ -1217,9 +1449,11 @@ function JasaTable({ data, onEdit, onDelete, onDuplicate }) {
   }
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-gray-200">
-      <table className="w-full">
-        <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
+    <>
+      {/* Desktop View - Table */}
+      <div className="hidden md:block overflow-x-auto rounded-lg border border-gray-200">
+        <table className="w-full">
+          <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
           <tr>
             <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">ID</th>
             <th className="px-6 py-4 text-left text-sm font-bold text-gray-700">Jasa</th>
@@ -1275,5 +1509,79 @@ function JasaTable({ data, onEdit, onDelete, onDuplicate }) {
         </tbody>
       </table>
     </div>
+
+    {/* Mobile View - Cards */}
+      <div className="md:hidden space-y-4">
+        {data.map((item) => (
+          <div key={item.id} className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+            <div className="bg-gradient-to-r from-sky-50 to-sky-100 px-4 py-3 border-b border-sky-200">
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex-1">
+                  <p className="text-xs font-medium text-gray-500 mb-1">ID Jasa</p>
+                  <p className="text-sm font-mono font-bold text-gray-900">{item.id}</p>
+                </div>
+                <div className="bg-gradient-to-br from-sky-600 to-sky-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-sm">
+                  <Wrench size={16} className="inline mr-1" />
+                  Jasa
+                </div>
+              </div>
+            </div>
+            
+            <div className="p-4 space-y-3">
+              <div>
+                <p className="text-xs font-medium text-gray-500 mb-1">Jenis Jasa</p>
+                <p className="text-base font-bold text-gray-900">{item.jasa}</p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <p className="text-xs font-medium text-gray-500 mb-1">Jenis</p>
+                  <p className="text-sm text-gray-700">{item.jenis}</p>
+                </div>
+                <div>
+                  <p className="text-xs font-medium text-gray-500 mb-1">Tipe</p>
+                  <p className="text-sm text-gray-700">{item.tipe}</p>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-3 rounded-lg border border-green-200">
+                <p className="text-xs font-medium text-gray-600 mb-1">Harga</p>
+                <p className="text-lg font-bold text-green-700">{formatRupiah(item.harga)}</p>
+              </div>
+            </div>
+
+            <div className="px-4 py-3 bg-gray-50 border-t border-gray-200 flex gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onDuplicate(item)}
+                className="flex-1 text-sky-600 border-sky-300 hover:bg-sky-50 hover:border-sky-400"
+              >
+                <Copy size={16} className="mr-1" />
+                Duplikat
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onEdit(item)}
+                className="flex-1 text-amber-600 border-amber-300 hover:bg-amber-50 hover:border-amber-400"
+              >
+                <Edit size={16} className="mr-1" />
+                Edit
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onDelete(item)}
+                className="flex-1 text-red-600 border-red-300 hover:bg-red-50 hover:border-red-400"
+              >
+                <Trash2 size={16} className="mr-1" />
+                Hapus
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }

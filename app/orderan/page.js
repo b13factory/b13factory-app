@@ -810,59 +810,59 @@ export default function OrderanPage() {
   const sisaBayar = totalTagihan - (parseFloat(dp) || 0);
 
   return (
-    <div className="space-y-6 pb-8">
+    <div className="space-y-3 sm:space-y-4 md:space-y-6 pb-6 sm:pb-8">
       {/* Header */}
-      <div className="bg-gradient-to-r from-sky-600 to-sky-500 p-6 rounded-xl shadow-lg">
-        <div className="flex items-center gap-4 mb-2">
-          <div className="p-3 bg-white/20 backdrop-blur-sm rounded-xl">
-            <ClipboardList className="text-white" size={32} />
+      <div className="bg-gradient-to-r from-sky-600 to-sky-500 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl shadow-lg">
+        <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-1 sm:mb-2">
+          <div className="p-1.5 sm:p-2 md:p-3 bg-white/20 backdrop-blur-sm rounded-lg sm:rounded-xl">
+            <ClipboardList className="text-white" size={20} />
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-white">Tambah Order Baru</h1>
-            <p className="text-sky-100 mt-1">Isi form di bawah untuk membuat order baru</p>
+            <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white">Tambah Order Baru</h1>
+            <p className="text-sky-100 mt-0.5 text-[11px] sm:text-xs md:text-sm">Isi form di bawah untuk membuat order baru</p>
           </div>
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
         {/* Data Pemesan */}
         <Card>
-          <CardHeader className="bg-gradient-to-r from-sky-50 to-blue-50 border-b">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-sky-600 rounded-lg">
-                <User className="text-white" size={20} />
+          <CardHeader className="bg-gradient-to-r from-sky-50 to-blue-50 border-b p-4 md:p-6">
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="p-1.5 md:p-2 bg-sky-600 rounded-lg">
+                <User className="text-white" size={18} />
               </div>
               <div>
-                <CardTitle>Data Pemesan</CardTitle>
-                <CardDescription>Informasi lengkap pemesan</CardDescription>
+                <CardTitle className="text-base md:text-lg">Data Pemesan</CardTitle>
+                <CardDescription className="text-xs md:text-sm">Informasi lengkap pemesan</CardDescription>
               </div>
             </div>
           </CardHeader>
-          <CardContent className="pt-6 space-y-4">
+          <CardContent className="pt-4 md:pt-6 space-y-4 p-4 md:p-6">
             <div>
-              <Label htmlFor="nama" className="text-base font-semibold">Nama Lengkap <span className="text-red-500">*</span></Label>
+              <Label htmlFor="nama" className="text-sm md:text-base font-semibold">Nama Lengkap <span className="text-red-500">*</span></Label>
               <Input
                 id="nama"
                 value={dataPemesan.nama}
                 onChange={(e) => setDataPemesan({ ...dataPemesan, nama: e.target.value })}
                 placeholder="Contoh: Budi Santoso"
                 required
-                className="mt-2"
+                className="mt-2 h-11 md:h-10 text-base"
               />
             </div>
             <div>
-              <Label htmlFor="nohp" className="text-base font-semibold">No HP/WhatsApp <span className="text-red-500">*</span></Label>
+              <Label htmlFor="nohp" className="text-sm md:text-base font-semibold">No HP/WhatsApp <span className="text-red-500">*</span></Label>
               <Input
                 id="nohp"
                 value={dataPemesan.nohp}
                 onChange={(e) => setDataPemesan({ ...dataPemesan, nohp: e.target.value })}
                 placeholder="Contoh: 081234567890"
                 required
-                className="mt-2"
+                className="mt-2 h-11 md:h-10 text-base"
               />
             </div>
             <div>
-              <Label htmlFor="alamat" className="text-base font-semibold">Alamat Lengkap <span className="text-red-500">*</span></Label>
+              <Label htmlFor="alamat" className="text-sm md:text-base font-semibold">Alamat Lengkap <span className="text-red-500">*</span></Label>
               <Textarea
                 id="alamat"
                 value={dataPemesan.alamat}
@@ -870,7 +870,7 @@ export default function OrderanPage() {
                 placeholder="Contoh: Jl. Mawar No. 10, Jakarta Selatan"
                 required
                 rows={3}
-                className="mt-2"
+                className="mt-2 text-base"
               />
             </div>
           </CardContent>
@@ -878,29 +878,29 @@ export default function OrderanPage() {
 
         {/* Data Pesanan */}
         <Card>
-          <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-50 border-b">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-green-600 rounded-lg">
-                  <Package className="text-white" size={20} />
+          <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-50 border-b p-4 md:p-6">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div className="flex items-center gap-2 md:gap-3">
+                <div className="p-1.5 md:p-2 bg-green-600 rounded-lg">
+                  <Package className="text-white" size={18} />
                 </div>
                 <div>
-                  <CardTitle>Data Pesanan</CardTitle>
-                  <CardDescription>Detail produk yang dipesan</CardDescription>
+                  <CardTitle className="text-base md:text-lg">Data Pesanan</CardTitle>
+                  <CardDescription className="text-xs md:text-sm">Detail produk yang dipesan</CardDescription>
                 </div>
               </div>
-              <Button type="button" onClick={tambahPesanan} variant="outline" size="sm">
-                <Plus size={16} className="mr-2" />
+              <Button type="button" onClick={tambahPesanan} variant="outline" size="sm" className="w-full sm:w-auto text-sm">
+                <Plus size={14} className="mr-1.5" />
                 Tambah Pesanan
               </Button>
             </div>
           </CardHeader>
-          <CardContent className="pt-6 space-y-6">
+          <CardContent className="pt-4 md:pt-6 space-y-4 md:space-y-6 p-3 md:p-6">
             {pesananList.map((pesanan, index) => (
-              <div key={pesanan.id} className="border-2 border-gray-200 rounded-xl p-6 bg-gray-50">
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-xl font-bold text-gray-800 flex items-center gap-2">
-                    <span className="flex items-center justify-center w-8 h-8 bg-sky-600 text-white rounded-full text-sm">
+              <div key={pesanan.id} className="border-2 border-gray-200 rounded-xl p-3 md:p-6 bg-gray-50">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4 md:mb-6">
+                  <h3 className="text-lg md:text-xl font-bold text-gray-800 flex items-center gap-2">
+                    <span className="flex items-center justify-center w-7 h-7 md:w-8 md:h-8 bg-sky-600 text-white rounded-full text-xs md:text-sm">
                       {index + 1}
                     </span>
                     Pesanan #{index + 1}
@@ -911,8 +911,9 @@ export default function OrderanPage() {
                       variant="destructive"
                       size="sm"
                       onClick={() => hapusPesanan(pesanan.id)}
+                      className="w-full sm:w-auto text-sm"
                     >
-                      <Trash2 size={16} className="mr-2" />
+                      <Trash2 size={14} className="mr-1.5" />
                       Hapus
                     </Button>
                   )}
@@ -1024,20 +1025,20 @@ export default function OrderanPage() {
 
         {/* Pembayaran & Jadwal */}
         <Card>
-          <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50 border-b">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-purple-600 rounded-lg">
-                <Calendar className="text-white" size={20} />
+          <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50 border-b p-4 md:p-6">
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="p-1.5 md:p-2 bg-purple-600 rounded-lg">
+                <Calendar className="text-white" size={18} />
               </div>
               <div>
-                <CardTitle>Pembayaran & Jadwal</CardTitle>
-                <CardDescription>Informasi pembayaran dan tenggat waktu</CardDescription>
+                <CardTitle className="text-base md:text-lg">Pembayaran & Jadwal</CardTitle>
+                <CardDescription className="text-xs md:text-sm">Informasi pembayaran dan tenggat waktu</CardDescription>
               </div>
             </div>
           </CardHeader>
-          <CardContent className="pt-6 space-y-4">
+          <CardContent className="pt-4 md:pt-6 space-y-4 p-4 md:p-6">
             <div>
-              <Label htmlFor="dp" className="text-base font-semibold">DP (Rp) <span className="text-red-500">*</span></Label>
+              <Label htmlFor="dp" className="text-sm md:text-base font-semibold">DP (Rp) <span className="text-red-500">*</span></Label>
               <Input
                 id="dp"
                 type="number"
@@ -1046,48 +1047,48 @@ export default function OrderanPage() {
                 placeholder="0"
                 min="0"
                 required
-                className="mt-2"
+                className="mt-2 h-11 md:h-10 text-base"
               />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="tanggal_pesan" className="text-base font-semibold">Tanggal Pemesanan <span className="text-red-500">*</span></Label>
+                <Label htmlFor="tanggal_pesan" className="text-sm md:text-base font-semibold">Tanggal Pemesanan <span className="text-red-500">*</span></Label>
                 <Input
                   id="tanggal_pesan"
                   type="date"
                   value={tanggalPesan}
                   onChange={(e) => setTanggalPesan(e.target.value)}
                   required
-                  className="mt-2"
+                  className="mt-2 h-11 md:h-10 text-base"
                 />
               </div>
               <div>
-                <Label htmlFor="deadline" className="text-base font-semibold">Deadline <span className="text-red-500">*</span></Label>
+                <Label htmlFor="deadline" className="text-sm md:text-base font-semibold">Deadline <span className="text-red-500">*</span></Label>
                 <Input
                   id="deadline"
                   type="date"
                   value={deadline}
                   onChange={(e) => setDeadline(e.target.value)}
                   required
-                  className="mt-2"
+                  className="mt-2 h-11 md:h-10 text-base"
                 />
               </div>
             </div>
             <div>
-              <Label htmlFor="mockup" className="text-base font-semibold">Gambar Mockup</Label>
+              <Label htmlFor="mockup" className="text-sm md:text-base font-semibold">Gambar Mockup</Label>
               <Input
                 id="mockup"
                 type="file"
                 accept="image/*"
                 onChange={handleFileChange}
-                className="mt-2"
+                className="mt-2 h-11 md:h-10 text-base"
               />
               {gambarMockupPreview && (
                 <div className="mt-4">
                   <img
                     src={gambarMockupPreview}
                     alt="Preview mockup"
-                    className="max-w-xs rounded-lg border-2 border-gray-200 shadow-md"
+                    className="max-w-full md:max-w-xs rounded-lg border-2 border-gray-200 shadow-md"
                   />
                 </div>
               )}
@@ -1111,12 +1112,13 @@ export default function OrderanPage() {
         />
 
         {/* Action Buttons */}
-        <div className="flex gap-4 justify-end">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 sm:justify-end">
           <Button
             type="button"
             variant="outline"
             onClick={() => router.push('/')}
             disabled={saving}
+            className="w-full sm:w-auto h-11 sm:h-10 text-base sm:text-sm"
           >
             <ArrowLeft size={18} className="mr-2" />
             Kembali
@@ -1124,7 +1126,7 @@ export default function OrderanPage() {
           <Button
             type="submit"
             disabled={saving}
-            className="bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-700 hover:to-sky-600 min-w-[150px]"
+            className="w-full sm:w-auto h-11 sm:h-10 text-base sm:text-sm bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-700 hover:to-sky-600 sm:min-w-[150px]"
           >
             {saving ? (
               <>
@@ -1169,13 +1171,13 @@ function GarmentForm({
   const warnaOptions = getFilteredOptions(pesanan, 'warna');
 
   return (
-    <div className="space-y-6 bg-white p-6 rounded-lg border">
+    <div className="space-y-4 sm:space-y-6 bg-white p-3 sm:p-6 rounded-lg border">
       {/* Detail Produk */}
       <div>
-        <Label className="text-sm font-bold text-gray-700 mb-3 block uppercase tracking-wide">Detail Produk</Label>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Label className="text-xs sm:text-sm font-bold text-gray-700 mb-2 sm:mb-3 block uppercase tracking-wide">Detail Produk</Label>
+        <div className="grid grid-cols-1 gap-3 sm:gap-4">
           <div>
-            <Label className="text-sm mb-1 block">Jenis <span className="text-red-500">*</span></Label>
+            <Label className="text-xs sm:text-sm mb-1.5 block font-medium">Jenis <span className="text-red-500">*</span></Label>
             <SmartSelect
               value={pesanan.produk}
               onChange={(value) => updatePesanan(pesanan.id, 'produk', value)}
@@ -1185,7 +1187,7 @@ function GarmentForm({
             />
           </div>
           <div>
-            <Label className="text-sm mb-1 block">Model <span className="text-red-500">*</span></Label>
+            <Label className="text-xs sm:text-sm mb-1.5 block font-medium">Model <span className="text-red-500">*</span></Label>
             <SmartSelect
               value={pesanan.jenis}
               onChange={(value) => updatePesanan(pesanan.id, 'jenis', value)}
@@ -1196,7 +1198,7 @@ function GarmentForm({
             />
           </div>
           <div>
-            <Label className="text-sm mb-1 block">Tipe/Desain</Label>
+            <Label className="text-xs sm:text-sm mb-1.5 block font-medium">Tipe/Desain</Label>
             <SmartSelect
               value={pesanan.model}
               onChange={(value) => updatePesanan(pesanan.id, 'model', value)}
@@ -1210,10 +1212,10 @@ function GarmentForm({
 
       {/* Bahan Utama */}
       <div>
-        <Label className="text-sm font-bold text-gray-700 mb-3 block uppercase tracking-wide">Bahan Utama</Label>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Label className="text-xs sm:text-sm font-bold text-gray-700 mb-2 sm:mb-3 block uppercase tracking-wide">Bahan Utama</Label>
+        <div className="grid grid-cols-1 gap-3 sm:gap-4">
           <div>
-            <Label className="text-sm mb-1 block">Toko <span className="text-red-500">*</span></Label>
+            <Label className="text-xs sm:text-sm mb-1.5 block font-medium">Toko <span className="text-red-500">*</span></Label>
             <SmartSelect
               value={pesanan.toko}
               onChange={(value) => updatePesanan(pesanan.id, 'toko', value)}
@@ -1223,7 +1225,7 @@ function GarmentForm({
             />
           </div>
           <div>
-            <Label className="text-sm mb-1 block">Jenis Kain <span className="text-red-500">*</span></Label>
+            <Label className="text-xs sm:text-sm mb-1.5 block font-medium">Jenis Kain <span className="text-red-500">*</span></Label>
             <SmartSelect
               value={pesanan.jenis_kain}
               onChange={(value) => updatePesanan(pesanan.id, 'jenis_kain', value)}
@@ -1234,7 +1236,7 @@ function GarmentForm({
             />
           </div>
           <div>
-            <Label className="text-sm mb-1 block">Warna <span className="text-red-500">*</span></Label>
+            <Label className="text-xs sm:text-sm mb-1.5 block font-medium">Warna <span className="text-red-500">*</span></Label>
             <SmartSelect
               value={pesanan.warna}
               onChange={(value) => updatePesanan(pesanan.id, 'warna', value)}
@@ -1249,13 +1251,14 @@ function GarmentForm({
 
       {/* Bahan Tambahan */}
       <div>
-        <div className="flex items-center justify-between mb-3">
-          <Label className="text-sm font-bold text-gray-700 uppercase tracking-wide">Bahan Tambahan</Label>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+          <Label className="text-xs sm:text-sm font-bold text-gray-700 uppercase tracking-wide">Bahan Tambahan</Label>
           <Button
             type="button"
             size="sm"
             variant="outline"
             onClick={() => tambahBahanTambahan(pesanan.id)}
+            className="w-full sm:w-auto text-xs"
           >
             <Plus size={14} className="mr-1" />
             Tambah
@@ -1268,7 +1271,7 @@ function GarmentForm({
               const warnaTambahanOptions = bahan.toko && bahan.jenis ? getFilteredOptions({ toko: bahan.toko, jenis_kain: bahan.jenis }, 'warna') : [];
               
               return (
-                <div key={bahan.id} className="grid grid-cols-1 md:grid-cols-4 gap-2 p-3 bg-gray-50 rounded-lg border">
+                <div key={bahan.id} className="grid grid-cols-1 gap-2 p-3 bg-gray-50 rounded-lg border">
                   <SmartSelect
                     value={bahan.toko}
                     onChange={(value) => updateBahanTambahan(pesanan.id, bahan.id, 'toko', value)}
@@ -1294,31 +1297,33 @@ function GarmentForm({
                     size="sm"
                     variant="destructive"
                     onClick={() => hapusBahanTambahan(pesanan.id, bahan.id)}
+                    className="w-full"
                   >
-                    <Trash2 size={14} />
+                    <Trash2 size={14} className="mr-1" />
+                    Hapus
                   </Button>
                 </div>
               );
             })}
           </div>
         ) : (
-          <p className="text-sm text-gray-500 italic">Belum ada bahan tambahan</p>
+          <p className="text-xs sm:text-sm text-gray-500 italic">Belum ada bahan tambahan</p>
         )}
       </div>
 
       {/* Ukuran */}
       <div>
-        <Label className="text-sm font-bold text-gray-700 mb-3 block uppercase tracking-wide">Ukuran</Label>
+        <Label className="text-xs sm:text-sm font-bold text-gray-700 mb-2 sm:mb-3 block uppercase tracking-wide">Ukuran</Label>
         
         {/* Checkboxes */}
-        <div className="flex gap-6 mb-4">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 mb-3 sm:mb-4">
           <div className="flex items-center space-x-2">
             <Checkbox
               id={`lengan-pendek-${pesanan.id}`}
               checked={pesanan.lengan_pendek}
               onCheckedChange={(checked) => updatePesanan(pesanan.id, 'lengan_pendek', checked)}
             />
-            <Label htmlFor={`lengan-pendek-${pesanan.id}`} className="cursor-pointer font-semibold">Lengan Pendek</Label>
+            <Label htmlFor={`lengan-pendek-${pesanan.id}`} className="cursor-pointer font-semibold text-sm sm:text-base">Lengan Pendek</Label>
           </div>
           <div className="flex items-center space-x-2">
             <Checkbox
@@ -1326,26 +1331,27 @@ function GarmentForm({
               checked={pesanan.lengan_panjang}
               onCheckedChange={(checked) => updatePesanan(pesanan.id, 'lengan_panjang', checked)}
             />
-            <Label htmlFor={`lengan-panjang-${pesanan.id}`} className="cursor-pointer font-semibold">Lengan Panjang</Label>
+            <Label htmlFor={`lengan-panjang-${pesanan.id}`} className="cursor-pointer font-semibold text-sm sm:text-base">Lengan Panjang</Label>
           </div>
         </div>
 
         {/* Lengan Pendek */}
         {pesanan.lengan_pendek && (
-          <div className="mb-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
-            <div className="flex items-center justify-between mb-3">
-              <Label className="font-semibold text-blue-900">Ukuran Lengan Pendek</Label>
+          <div className="mb-3 sm:mb-4 p-3 sm:p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 mb-3">
+              <Label className="font-semibold text-blue-900 text-sm sm:text-base">Ukuran Lengan Pendek</Label>
               <Button
                 type="button"
                 size="sm"
                 variant="outline"
                 onClick={() => tambahCustomSize(pesanan.id, 'pendek')}
+                className="w-full sm:w-auto"
               >
                 <Plus size={14} className="mr-1" />
                 Custom
               </Button>
             </div>
-            <div className="grid grid-cols-5 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
               {['XS', 'S', 'M', 'L', 'XL'].map(size => (
                 <div key={size}>
                   <Label className="text-xs mb-1 block text-center font-bold">{size}</Label>
@@ -1354,7 +1360,7 @@ function GarmentForm({
                     min="0"
                     value={pesanan.ukuran_pendek[size]}
                     onChange={(e) => updateUkuran(pesanan.id, 'pendek', size, e.target.value)}
-                    className="text-center"
+                    className="text-center h-10 text-sm"
                   />
                 </div>
               ))}
@@ -1364,33 +1370,40 @@ function GarmentForm({
             {pesanan.custom_sizes_pendek && pesanan.custom_sizes_pendek.length > 0 && (
               <div className="mt-3 space-y-2">
                 {pesanan.custom_sizes_pendek.map(cs => (
-                  <div key={cs.id} className="grid grid-cols-4 gap-2 p-2 bg-white rounded border">
+                  <div key={cs.id} className="flex flex-col gap-2 p-2 sm:p-3 bg-white rounded border">
                     <Input
                       placeholder="Nama"
                       value={cs.nama}
                       onChange={(e) => updateCustomSize(pesanan.id, 'pendek', cs.id, 'nama', e.target.value)}
+                      className="h-10 text-sm"
                     />
-                    <Input
-                      type="number"
-                      placeholder="Jumlah"
-                      min="0"
-                      value={cs.jumlah}
-                      onChange={(e) => updateCustomSize(pesanan.id, 'pendek', cs.id, 'jumlah', e.target.value)}
-                    />
-                    <Input
-                      type="number"
-                      placeholder="Harga"
-                      min="0"
-                      value={cs.harga}
-                      onChange={(e) => updateCustomSize(pesanan.id, 'pendek', cs.id, 'harga', e.target.value)}
-                    />
+                    <div className="grid grid-cols-2 gap-2">
+                      <Input
+                        type="number"
+                        placeholder="Jumlah"
+                        min="0"
+                        value={cs.jumlah}
+                        onChange={(e) => updateCustomSize(pesanan.id, 'pendek', cs.id, 'jumlah', e.target.value)}
+                        className="h-10 text-sm"
+                      />
+                      <Input
+                        type="number"
+                        placeholder="Harga"
+                        min="0"
+                        value={cs.harga}
+                        onChange={(e) => updateCustomSize(pesanan.id, 'pendek', cs.id, 'harga', e.target.value)}
+                        className="h-10 text-sm"
+                      />
+                    </div>
                     <Button
                       type="button"
                       size="sm"
                       variant="destructive"
                       onClick={() => hapusCustomSize(pesanan.id, 'pendek', cs.id)}
+                      className="w-full"
                     >
-                      <Trash2 size={14} />
+                      <Trash2 size={14} className="mr-1" />
+                      Hapus
                     </Button>
                   </div>
                 ))}
@@ -1401,20 +1414,21 @@ function GarmentForm({
 
         {/* Lengan Panjang */}
         {pesanan.lengan_panjang && (
-          <div className="mb-4 p-4 bg-green-50 rounded-lg border border-green-200">
-            <div className="flex items-center justify-between mb-3">
-              <Label className="font-semibold text-green-900">Ukuran Lengan Panjang</Label>
+          <div className="mb-3 sm:mb-4 p-3 sm:p-4 bg-green-50 rounded-lg border border-green-200">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 mb-3">
+              <Label className="font-semibold text-green-900 text-sm sm:text-base">Ukuran Lengan Panjang</Label>
               <Button
                 type="button"
                 size="sm"
                 variant="outline"
                 onClick={() => tambahCustomSize(pesanan.id, 'panjang')}
+                className="w-full sm:w-auto"
               >
                 <Plus size={14} className="mr-1" />
                 Custom
               </Button>
             </div>
-            <div className="grid grid-cols-5 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
               {['XS', 'S', 'M', 'L', 'XL'].map(size => (
                 <div key={size}>
                   <Label className="text-xs mb-1 block text-center font-bold">{size}</Label>
@@ -1423,7 +1437,7 @@ function GarmentForm({
                     min="0"
                     value={pesanan.ukuran_panjang[size]}
                     onChange={(e) => updateUkuran(pesanan.id, 'panjang', size, e.target.value)}
-                    className="text-center"
+                    className="text-center h-10 text-sm"
                   />
                 </div>
               ))}
@@ -1433,33 +1447,40 @@ function GarmentForm({
             {pesanan.custom_sizes_panjang && pesanan.custom_sizes_panjang.length > 0 && (
               <div className="mt-3 space-y-2">
                 {pesanan.custom_sizes_panjang.map(cs => (
-                  <div key={cs.id} className="grid grid-cols-4 gap-2 p-2 bg-white rounded border">
+                  <div key={cs.id} className="flex flex-col gap-2 p-2 sm:p-3 bg-white rounded border">
                     <Input
                       placeholder="Nama"
                       value={cs.nama}
                       onChange={(e) => updateCustomSize(pesanan.id, 'panjang', cs.id, 'nama', e.target.value)}
+                      className="h-10 text-sm"
                     />
-                    <Input
-                      type="number"
-                      placeholder="Jumlah"
-                      min="0"
-                      value={cs.jumlah}
-                      onChange={(e) => updateCustomSize(pesanan.id, 'panjang', cs.id, 'jumlah', e.target.value)}
-                    />
-                    <Input
-                      type="number"
-                      placeholder="Harga"
-                      min="0"
-                      value={cs.harga}
-                      onChange={(e) => updateCustomSize(pesanan.id, 'panjang', cs.id, 'harga', e.target.value)}
-                    />
+                    <div className="grid grid-cols-2 gap-2">
+                      <Input
+                        type="number"
+                        placeholder="Jumlah"
+                        min="0"
+                        value={cs.jumlah}
+                        onChange={(e) => updateCustomSize(pesanan.id, 'panjang', cs.id, 'jumlah', e.target.value)}
+                        className="h-10 text-sm"
+                      />
+                      <Input
+                        type="number"
+                        placeholder="Harga"
+                        min="0"
+                        value={cs.harga}
+                        onChange={(e) => updateCustomSize(pesanan.id, 'panjang', cs.id, 'harga', e.target.value)}
+                        className="h-10 text-sm"
+                      />
+                    </div>
                     <Button
                       type="button"
                       size="sm"
                       variant="destructive"
                       onClick={() => hapusCustomSize(pesanan.id, 'panjang', cs.id)}
+                      className="w-full"
                     >
-                      <Trash2 size={14} />
+                      <Trash2 size={14} className="mr-1" />
+                      Hapus
                     </Button>
                   </div>
                 ))}
@@ -1471,13 +1492,14 @@ function GarmentForm({
 
       {/* Ukuran Lainnya */}
       <div>
-        <div className="flex items-center justify-between mb-3">
-          <Label className="text-sm font-bold text-gray-700 uppercase tracking-wide">Ukuran Lainnya</Label>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+          <Label className="text-xs sm:text-sm font-bold text-gray-700 uppercase tracking-wide">Ukuran Lainnya</Label>
           <Button
             type="button"
             size="sm"
             variant="outline"
             onClick={() => tambahUkuranLainnya(pesanan.id)}
+            className="w-full sm:w-auto text-xs"
           >
             <Plus size={14} className="mr-1" />
             Tambah
@@ -1486,64 +1508,73 @@ function GarmentForm({
         {pesanan.ukuran_lainnya && pesanan.ukuran_lainnya.length > 0 ? (
           <div className="space-y-2">
             {pesanan.ukuran_lainnya.map(ukuran => (
-              <div key={ukuran.id} className="grid grid-cols-4 gap-2 p-2 bg-gray-50 rounded border">
+              <div key={ukuran.id} className="flex flex-col gap-2 p-3 bg-gray-50 rounded-lg border">
                 <Input
                   placeholder="Nama Ukuran"
                   value={ukuran.nama}
                   onChange={(e) => updateUkuranLainnya(pesanan.id, ukuran.id, 'nama', e.target.value)}
+                  className="h-10 text-sm"
                 />
-                <Input
-                  type="number"
-                  placeholder="Jumlah"
-                  min="0"
-                  value={ukuran.jumlah}
-                  onChange={(e) => updateUkuranLainnya(pesanan.id, ukuran.id, 'jumlah', e.target.value)}
-                />
-                <Input
-                  type="number"
-                  placeholder="Harga"
-                  min="0"
-                  value={ukuran.harga}
-                  onChange={(e) => updateUkuranLainnya(pesanan.id, ukuran.id, 'harga', e.target.value)}
-                />
+                <div className="grid grid-cols-2 gap-2">
+                  <Input
+                    type="number"
+                    placeholder="Jumlah"
+                    min="0"
+                    value={ukuran.jumlah}
+                    onChange={(e) => updateUkuranLainnya(pesanan.id, ukuran.id, 'jumlah', e.target.value)}
+                    className="h-10 text-sm"
+                  />
+                  <Input
+                    type="number"
+                    placeholder="Harga"
+                    min="0"
+                    value={ukuran.harga}
+                    onChange={(e) => updateUkuranLainnya(pesanan.id, ukuran.id, 'harga', e.target.value)}
+                    className="h-10 text-sm"
+                  />
+                </div>
                 <Button
                   type="button"
                   size="sm"
                   variant="destructive"
                   onClick={() => hapusUkuranLainnya(pesanan.id, ukuran.id)}
+                  className="w-full"
                 >
-                  <Trash2 size={14} />
+                  <Trash2 size={14} className="mr-1" />
+                  Hapus
                 </Button>
               </div>
             ))}
           </div>
         ) : (
-          <p className="text-sm text-gray-500 italic">Belum ada ukuran lainnya</p>
+          <p className="text-xs sm:text-sm text-gray-500 italic">Belum ada ukuran lainnya</p>
         )}
       </div>
 
       {/* Harga Satuan */}
       <div>
-        <Label className="text-sm font-bold text-gray-700 mb-3 block uppercase tracking-wide">Harga Satuan</Label>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <Label className="text-xs sm:text-sm font-bold text-gray-700 mb-2 sm:mb-3 block uppercase tracking-wide">Harga Satuan</Label>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
           <div>
-            <Label className="text-sm mb-1 block">Harga Satuan Lengan Pendek (Rp)</Label>
+            <Label className="text-xs sm:text-sm mb-1.5 block font-medium">Harga Satuan Lengan Pendek (Rp)</Label>
             <Input
               type="number"
               min="0"
               value={pesanan.harga_satuan_pendek}
               onChange={(e) => updatePesanan(pesanan.id, 'harga_satuan_pendek', e.target.value)}
               placeholder="0"
+              className="h-10 text-sm"
             />
           </div>
           <div>
-            <Label className="text-sm mb-1 block">Harga Satuan Lengan Panjang (Rp)</Label>
+            <Label className="text-xs sm:text-sm mb-1.5 block font-medium">Harga Satuan Lengan Panjang (Rp)</Label>
             <Input
               type="number"
               min="0"
               value={pesanan.harga_satuan_panjang}
               onChange={(e) => updatePesanan(pesanan.id, 'harga_satuan_panjang', e.target.value)}
               placeholder="0"
+              className="h-10 text-sm"
             />
           </div>
         </div>
@@ -1566,13 +1597,13 @@ function AdvertisingForm({
   const modelOptions = getFilteredOptions(pesanan, 'model');
 
   return (
-    <div className="space-y-6 bg-white p-6 rounded-lg border">
+    <div className="space-y-4 sm:space-y-6 bg-white p-3 sm:p-6 rounded-lg border">
       {/* Detail Produk */}
       <div>
-        <Label className="text-sm font-bold text-gray-700 mb-3 block uppercase tracking-wide">Detail Produk</Label>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Label className="text-xs sm:text-sm font-bold text-gray-700 mb-2 sm:mb-3 block uppercase tracking-wide">Detail Produk</Label>
+        <div className="grid grid-cols-1 gap-3 sm:gap-4">
           <div>
-            <Label className="text-sm mb-1 block">Jenis <span className="text-red-500">*</span></Label>
+            <Label className="text-xs sm:text-sm mb-1.5 block font-medium">Jenis <span className="text-red-500">*</span></Label>
             <SmartSelect
               value={pesanan.produk}
               onChange={(value) => updatePesanan(pesanan.id, 'produk', value)}
@@ -1582,7 +1613,7 @@ function AdvertisingForm({
             />
           </div>
           <div>
-            <Label className="text-sm mb-1 block">Model <span className="text-red-500">*</span></Label>
+            <Label className="text-xs sm:text-sm mb-1.5 block font-medium">Model <span className="text-red-500">*</span></Label>
             <SmartSelect
               value={pesanan.jenis}
               onChange={(value) => updatePesanan(pesanan.id, 'jenis', value)}
@@ -1593,7 +1624,7 @@ function AdvertisingForm({
             />
           </div>
           <div>
-            <Label className="text-sm mb-1 block">Tipe/Desain</Label>
+            <Label className="text-xs sm:text-sm mb-1.5 block font-medium">Tipe/Desain</Label>
             <SmartSelect
               value={pesanan.model}
               onChange={(value) => updatePesanan(pesanan.id, 'model', value)}
@@ -1607,22 +1638,23 @@ function AdvertisingForm({
 
       {/* Detail Pesanan Advertising */}
       <div>
-        <div className="flex items-center justify-between mb-3">
-          <Label className="text-sm font-bold text-gray-700 uppercase tracking-wide">Detail Pesanan Advertising</Label>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+          <Label className="text-xs sm:text-sm font-bold text-gray-700 uppercase tracking-wide">Detail Pesanan Advertising</Label>
           <Button
             type="button"
             size="sm"
             variant="outline"
             onClick={() => tambahItemAdvertising(pesanan.id)}
+            className="w-full sm:w-auto text-xs"
           >
             <Plus size={14} className="mr-1" />
             Tambah Item
           </Button>
         </div>
         
-        {/* Label Header Kolom */}
+        {/* Label Header Kolom - Hidden on mobile */}
         {pesanan.items_advertising && pesanan.items_advertising.length > 0 && (
-          <div className="grid grid-cols-4 gap-2 px-3 mb-2">
+          <div className="hidden md:grid md:grid-cols-4 gap-2 px-3 mb-2">
             <Label className="text-xs font-bold text-gray-600 uppercase">Dimensi (contoh: 2x3)</Label>
             <Label className="text-xs font-bold text-gray-600 uppercase">Harga per m² (Rp)</Label>
             <Label className="text-xs font-bold text-gray-600 uppercase">Jumlah</Label>
@@ -1631,41 +1663,57 @@ function AdvertisingForm({
         )}
         
         {pesanan.items_advertising && pesanan.items_advertising.length > 0 ? (
-          <div className="space-y-2">
+          <div className="space-y-3">
             {pesanan.items_advertising.map(item => (
-              <div key={item.id} className="grid grid-cols-4 gap-2 p-3 bg-gray-50 rounded-lg border">
-                <Input
-                  placeholder="Dimensi (misal: 2x3)"
-                  value={item.dimensi}
-                  onChange={(e) => updateItemAdvertising(pesanan.id, item.id, 'dimensi', e.target.value)}
-                />
-                <Input
-                  type="number"
-                  placeholder="Harga per m²"
-                  min="0"
-                  value={item.harga}
-                  onChange={(e) => updateItemAdvertising(pesanan.id, item.id, 'harga', e.target.value)}
-                />
-                <Input
-                  type="number"
-                  placeholder="Jumlah"
-                  min="0"
-                  value={item.jumlah}
-                  onChange={(e) => updateItemAdvertising(pesanan.id, item.id, 'jumlah', e.target.value)}
-                />
-                <Button
-                  type="button"
-                  size="sm"
-                  variant="destructive"
-                  onClick={() => hapusItemAdvertising(pesanan.id, item.id)}
-                >
-                  <Trash2 size={14} />
-                </Button>
+              <div key={item.id} className="flex flex-col gap-2 md:grid md:grid-cols-4 p-3 bg-gray-50 rounded-lg border">
+                <div className="md:col-span-1">
+                  <Label className="text-xs mb-1 block md:hidden font-semibold">Dimensi</Label>
+                  <Input
+                    placeholder="Dimensi (misal: 2x3)"
+                    value={item.dimensi}
+                    onChange={(e) => updateItemAdvertising(pesanan.id, item.id, 'dimensi', e.target.value)}
+                    className="h-10 text-sm"
+                  />
+                </div>
+                <div className="md:col-span-1">
+                  <Label className="text-xs mb-1 block md:hidden font-semibold">Harga per m²</Label>
+                  <Input
+                    type="number"
+                    placeholder="Harga per m²"
+                    min="0"
+                    value={item.harga}
+                    onChange={(e) => updateItemAdvertising(pesanan.id, item.id, 'harga', e.target.value)}
+                    className="h-10 text-sm"
+                  />
+                </div>
+                <div className="md:col-span-1">
+                  <Label className="text-xs mb-1 block md:hidden font-semibold">Jumlah</Label>
+                  <Input
+                    type="number"
+                    placeholder="Jumlah"
+                    min="0"
+                    value={item.jumlah}
+                    onChange={(e) => updateItemAdvertising(pesanan.id, item.id, 'jumlah', e.target.value)}
+                    className="h-10 text-sm"
+                  />
+                </div>
+                <div className="md:col-span-1">
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="destructive"
+                    onClick={() => hapusItemAdvertising(pesanan.id, item.id)}
+                    className="w-full"
+                  >
+                    <Trash2 size={14} className="mr-1.5" />
+                    Hapus
+                  </Button>
+                </div>
               </div>
             ))}
           </div>
         ) : (
-          <p className="text-sm text-gray-500 italic">Belum ada item advertising</p>
+          <p className="text-xs sm:text-sm text-gray-500 italic">Belum ada item advertising</p>
         )}
       </div>
     </div>
@@ -1686,13 +1734,13 @@ function JasaForm({
   const modelOptions = getFilteredOptions(pesanan, 'model');
 
   return (
-    <div className="space-y-6 bg-white p-6 rounded-lg border">
+    <div className="space-y-4 sm:space-y-6 bg-white p-3 sm:p-6 rounded-lg border">
       {/* Detail Produk */}
       <div>
-        <Label className="text-sm font-bold text-gray-700 mb-3 block uppercase tracking-wide">Detail Produk</Label>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Label className="text-xs sm:text-sm font-bold text-gray-700 mb-2 sm:mb-3 block uppercase tracking-wide">Detail Produk</Label>
+        <div className="grid grid-cols-1 gap-3 sm:gap-4">
           <div>
-            <Label className="text-sm mb-1 block">Jenis <span className="text-red-500">*</span></Label>
+            <Label className="text-xs sm:text-sm mb-1.5 block font-medium">Jenis <span className="text-red-500">*</span></Label>
             <SmartSelect
               value={pesanan.produk}
               onChange={(value) => updatePesanan(pesanan.id, 'produk', value)}
@@ -1702,7 +1750,7 @@ function JasaForm({
             />
           </div>
           <div>
-            <Label className="text-sm mb-1 block">Model <span className="text-red-500">*</span></Label>
+            <Label className="text-xs sm:text-sm mb-1.5 block font-medium">Model <span className="text-red-500">*</span></Label>
             <SmartSelect
               value={pesanan.jenis}
               onChange={(value) => updatePesanan(pesanan.id, 'jenis', value)}
@@ -1713,7 +1761,7 @@ function JasaForm({
             />
           </div>
           <div>
-            <Label className="text-sm mb-1 block">Tipe/Desain</Label>
+            <Label className="text-xs sm:text-sm mb-1.5 block font-medium">Tipe/Desain</Label>
             <SmartSelect
               value={pesanan.model}
               onChange={(value) => updatePesanan(pesanan.id, 'model', value)}
@@ -1727,22 +1775,23 @@ function JasaForm({
 
       {/* Detail Pesanan Jasa */}
       <div>
-        <div className="flex items-center justify-between mb-3">
-          <Label className="text-sm font-bold text-gray-700 uppercase tracking-wide">Detail Pesanan Jasa</Label>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+          <Label className="text-xs sm:text-sm font-bold text-gray-700 uppercase tracking-wide">Detail Pesanan Jasa</Label>
           <Button
             type="button"
             size="sm"
             variant="outline"
             onClick={() => tambahItemJasa(pesanan.id)}
+            className="w-full sm:w-auto text-xs"
           >
             <Plus size={14} className="mr-1" />
             Tambah Item
           </Button>
         </div>
         
-        {/* Label Header Kolom */}
+        {/* Label Header Kolom - Hidden on mobile */}
         {pesanan.items_jasa && pesanan.items_jasa.length > 0 && (
-          <div className="grid grid-cols-4 gap-2 px-3 mb-2">
+          <div className="hidden md:grid md:grid-cols-4 gap-2 px-3 mb-2">
             <Label className="text-xs font-bold text-gray-600 uppercase">Keterangan</Label>
             <Label className="text-xs font-bold text-gray-600 uppercase">Harga (Rp)</Label>
             <Label className="text-xs font-bold text-gray-600 uppercase">Jumlah</Label>
@@ -1751,41 +1800,57 @@ function JasaForm({
         )}
         
         {pesanan.items_jasa && pesanan.items_jasa.length > 0 ? (
-          <div className="space-y-2">
+          <div className="space-y-3">
             {pesanan.items_jasa.map(item => (
-              <div key={item.id} className="grid grid-cols-4 gap-2 p-3 bg-gray-50 rounded-lg border">
-                <Input
-                  placeholder="Keterangan"
-                  value={item.keterangan || ''}
-                  onChange={(e) => updateItemJasa(pesanan.id, item.id, 'keterangan', e.target.value)}
-                />
-                <Input
-                  type="number"
-                  placeholder="Harga"
-                  min="0"
-                  value={item.harga}
-                  onChange={(e) => updateItemJasa(pesanan.id, item.id, 'harga', e.target.value)}
-                />
-                <Input
-                  type="number"
-                  placeholder="Jumlah"
-                  min="0"
-                  value={item.jumlah}
-                  onChange={(e) => updateItemJasa(pesanan.id, item.id, 'jumlah', e.target.value)}
-                />
-                <Button
-                  type="button"
-                  size="sm"
-                  variant="destructive"
-                  onClick={() => hapusItemJasa(pesanan.id, item.id)}
-                >
-                  <Trash2 size={14} />
-                </Button>
+              <div key={item.id} className="flex flex-col gap-2 md:grid md:grid-cols-4 p-3 bg-gray-50 rounded-lg border">
+                <div className="md:col-span-1">
+                  <Label className="text-xs mb-1 block md:hidden font-semibold">Keterangan</Label>
+                  <Input
+                    placeholder="Keterangan"
+                    value={item.keterangan || ''}
+                    onChange={(e) => updateItemJasa(pesanan.id, item.id, 'keterangan', e.target.value)}
+                    className="h-10 text-sm"
+                  />
+                </div>
+                <div className="md:col-span-1">
+                  <Label className="text-xs mb-1 block md:hidden font-semibold">Harga</Label>
+                  <Input
+                    type="number"
+                    placeholder="Harga"
+                    min="0"
+                    value={item.harga}
+                    onChange={(e) => updateItemJasa(pesanan.id, item.id, 'harga', e.target.value)}
+                    className="h-10 text-sm"
+                  />
+                </div>
+                <div className="md:col-span-1">
+                  <Label className="text-xs mb-1 block md:hidden font-semibold">Jumlah</Label>
+                  <Input
+                    type="number"
+                    placeholder="Jumlah"
+                    min="0"
+                    value={item.jumlah}
+                    onChange={(e) => updateItemJasa(pesanan.id, item.id, 'jumlah', e.target.value)}
+                    className="h-10 text-sm"
+                  />
+                </div>
+                <div className="md:col-span-1">
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="destructive"
+                    onClick={() => hapusItemJasa(pesanan.id, item.id)}
+                    className="w-full"
+                  >
+                    <Trash2 size={14} className="mr-1.5" />
+                    Hapus
+                  </Button>
+                </div>
               </div>
             ))}
           </div>
         ) : (
-          <p className="text-sm text-gray-500 italic">Belum ada item jasa</p>
+          <p className="text-xs sm:text-sm text-gray-500 italic">Belum ada item jasa</p>
         )}
       </div>
     </div>
@@ -1825,22 +1890,22 @@ function BiayaProduksiSection({
 
   return (
     <Card>
-      <CardHeader className="bg-gradient-to-r from-orange-50 to-red-50 border-b">
-        <div className="flex items-center gap-3">
-          <div className="p-2 bg-orange-600 rounded-lg">
-            <DollarSign className="text-white" size={20} />
+      <CardHeader className="bg-gradient-to-r from-orange-50 to-red-50 border-b p-4 md:p-6">
+        <div className="flex items-center gap-2 md:gap-3">
+          <div className="p-1.5 md:p-2 bg-orange-600 rounded-lg">
+            <DollarSign className="text-white" size={18} />
           </div>
           <div>
-            <CardTitle>Biaya Produksi</CardTitle>
-            <CardDescription>Rincian biaya kain, percetakan, dan jasa</CardDescription>
+            <CardTitle className="text-base md:text-lg">Biaya Produksi</CardTitle>
+            <CardDescription className="text-xs md:text-sm">Rincian biaya kain, percetakan, dan jasa</CardDescription>
           </div>
         </div>
       </CardHeader>
-      <CardContent className="pt-6 space-y-6">
+      <CardContent className="pt-4 md:pt-6 space-y-4 md:space-y-6 p-4 md:p-6">
         {/* Keterangan Info */}
-        <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg flex gap-3">
-          <Info className="text-blue-600 flex-shrink-0" size={20} />
-          <div className="text-sm text-blue-800">
+        <div className="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 rounded-lg flex gap-2 md:gap-3">
+          <Info className="text-blue-600 flex-shrink-0" size={18} />
+          <div className="text-xs md:text-sm text-blue-800">
             <p className="font-semibold mb-1">Keterangan:</p>
             <p>Data biaya produksi dapat dipilih dari katalog atau diisi manual. Anda dapat mengedit harga dan jumlah sesuai kebutuhan tanpa mengubah data di katalog.</p>
           </div>
@@ -1848,17 +1913,17 @@ function BiayaProduksiSection({
 
         {/* Kain */}
         <div>
-          <div className="flex items-center justify-between mb-3">
-            <Label className="text-base font-bold">Kain/Bahan</Label>
-            <Button type="button" size="sm" variant="outline" onClick={tambahBiayaKain}>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+            <Label className="text-sm sm:text-base font-bold">Kain/Bahan</Label>
+            <Button type="button" size="sm" variant="outline" onClick={tambahBiayaKain} className="w-full sm:w-auto">
               <Plus size={14} className="mr-1" />
               Tambah Kain
             </Button>
           </div>
           
-          {/* Label Header Kolom */}
+          {/* Label Header Kolom - Hidden on mobile */}
           {biayaKain.length > 0 && (
-            <div className="grid grid-cols-4 gap-2 px-3 mb-2">
+            <div className="hidden md:grid md:grid-cols-4 gap-2 px-3 mb-2">
               <Label className="text-xs font-bold text-gray-600 uppercase">Nama Kain</Label>
               <Label className="text-xs font-bold text-gray-600 uppercase">Harga (Rp)</Label>
               <Label className="text-xs font-bold text-gray-600 uppercase">Jumlah (kg)</Label>
@@ -1867,59 +1932,74 @@ function BiayaProduksiSection({
           )}
           
           {biayaKain.length > 0 ? (
-            <div className="space-y-2">
+            <div className="space-y-3">
               {biayaKain.map(item => (
-                <div key={item.id} className="grid grid-cols-4 gap-2 p-3 bg-gray-50 rounded-lg border">
-                  <SmartSelect
-                    value={item.nama}
-                    onChange={(value) => updateBiayaKain(item.id, 'nama', value)}
-                    options={kainOptions}
-                    placeholder="Pilih/Tulis Nama Kain..."
-                  />
-                  <Input
-                    type="number"
-                    placeholder="Harga (Rp)"
-                    min="0"
-                    value={item.harga}
-                    onChange={(e) => updateBiayaKain(item.id, 'harga', e.target.value)}
-                  />
-                  <Input
-                    type="number"
-                    placeholder="Jumlah (kg)"
-                    min="0"
-                    step="0.1"
-                    value={item.jumlah}
-                    onChange={(e) => updateBiayaKain(item.id, 'jumlah', e.target.value)}
-                  />
-                  <Button
-                    type="button"
-                    size="sm"
-                    variant="destructive"
-                    onClick={() => hapusBiayaKain(item.id)}
-                  >
-                    <Trash2 size={14} />
-                  </Button>
+                <div key={item.id} className="flex flex-col gap-2 md:grid md:grid-cols-4 p-3 bg-gray-50 rounded-lg border">
+                  <div className="md:col-span-1">
+                    <Label className="text-xs mb-1 block md:hidden font-semibold">Nama Kain</Label>
+                    <SmartSelect
+                      value={item.nama}
+                      onChange={(value) => updateBiayaKain(item.id, 'nama', value)}
+                      options={kainOptions}
+                      placeholder="Pilih/Tulis Nama Kain..."
+                    />
+                  </div>
+                  <div className="md:col-span-1">
+                    <Label className="text-xs mb-1 block md:hidden font-semibold">Harga (Rp)</Label>
+                    <Input
+                      type="number"
+                      placeholder="Harga (Rp)"
+                      min="0"
+                      value={item.harga}
+                      onChange={(e) => updateBiayaKain(item.id, 'harga', e.target.value)}
+                      className="h-10 text-sm"
+                    />
+                  </div>
+                  <div className="md:col-span-1">
+                    <Label className="text-xs mb-1 block md:hidden font-semibold">Jumlah (kg)</Label>
+                    <Input
+                      type="number"
+                      placeholder="Jumlah (kg)"
+                      min="0"
+                      step="0.1"
+                      value={item.jumlah}
+                      onChange={(e) => updateBiayaKain(item.id, 'jumlah', e.target.value)}
+                      className="h-10 text-sm"
+                    />
+                  </div>
+                  <div className="md:col-span-1">
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="destructive"
+                      onClick={() => hapusBiayaKain(item.id)}
+                      className="w-full"
+                    >
+                      <Trash2 size={14} className="mr-1.5" />
+                      Hapus
+                    </Button>
+                  </div>
                 </div>
               ))}
             </div>
           ) : (
-            <p className="text-sm text-gray-500 italic">Belum ada biaya kain</p>
+            <p className="text-xs sm:text-sm text-gray-500 italic">Belum ada biaya kain</p>
           )}
         </div>
 
         {/* Percetakan */}
         <div>
-          <div className="flex items-center justify-between mb-3">
-            <Label className="text-base font-bold">Percetakan</Label>
-            <Button type="button" size="sm" variant="outline" onClick={tambahBiayaPercetakan}>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+            <Label className="text-sm sm:text-base font-bold">Percetakan</Label>
+            <Button type="button" size="sm" variant="outline" onClick={tambahBiayaPercetakan} className="w-full sm:w-auto">
               <Plus size={14} className="mr-1" />
               Tambah Percetakan
             </Button>
           </div>
           
-          {/* Label Header Kolom */}
+          {/* Label Header Kolom - Hidden on mobile */}
           {biayaPercetakan.length > 0 && (
-            <div className="grid grid-cols-6 gap-2 px-3 mb-2">
+            <div className="hidden md:grid md:grid-cols-6 gap-2 px-3 mb-2">
               <Label className="text-xs font-bold text-gray-600 uppercase">Jenis</Label>
               <Label className="text-xs font-bold text-gray-600 uppercase">Model</Label>
               <Label className="text-xs font-bold text-gray-600 uppercase">Tipe/Ukuran</Label>
@@ -1930,77 +2010,98 @@ function BiayaProduksiSection({
           )}
           
           {biayaPercetakan.length > 0 ? (
-            <div className="space-y-2">
+            <div className="space-y-3">
               {biayaPercetakan.map(item => {
                 const modelOptions = getFilteredPercetakan(item, 'model');
                 const tipeOptions = getFilteredPercetakan(item, 'tipe');
                 
                 return (
-                  <div key={item.id} className="grid grid-cols-6 gap-2 p-3 bg-gray-50 rounded-lg border">
-                    <SmartSelect
-                      value={item.jenis}
-                      onChange={(value) => updateBiayaPercetakan(item.id, 'jenis', value)}
-                      options={jenisCetakOptions}
-                      placeholder="Pilih jenis..."
-                    />
-                    <SmartSelect
-                      value={item.model}
-                      onChange={(value) => updateBiayaPercetakan(item.id, 'model', value)}
-                      options={modelOptions}
-                      placeholder="Pilih model..."
-                      disabled={!item.jenis}
-                    />
-                    <SmartSelect
-                      value={item.tipe}
-                      onChange={(value) => updateBiayaPercetakan(item.id, 'tipe', value)}
-                      options={tipeOptions}
-                      placeholder="Pilih tipe..."
-                      disabled={!item.model}
-                    />
-                    <Input
-                      type="number"
-                      placeholder="0"
-                      min="0"
-                      value={item.harga}
-                      onChange={(e) => updateBiayaPercetakan(item.id, 'harga', e.target.value)}
-                    />
-                    <Input
-                      type="number"
-                      placeholder="0"
-                      min="0"
-                      value={item.jumlah}
-                      onChange={(e) => updateBiayaPercetakan(item.id, 'jumlah', e.target.value)}
-                    />
-                    <Button
-                      type="button"
-                      size="sm"
-                      variant="destructive"
-                      onClick={() => hapusBiayaPercetakan(item.id)}
-                    >
-                      <Trash2 size={14} />
-                    </Button>
+                  <div key={item.id} className="flex flex-col gap-2 md:grid md:grid-cols-6 p-3 bg-gray-50 rounded-lg border">
+                    <div className="md:col-span-1">
+                      <Label className="text-xs mb-1 block md:hidden font-semibold">Jenis</Label>
+                      <SmartSelect
+                        value={item.jenis}
+                        onChange={(value) => updateBiayaPercetakan(item.id, 'jenis', value)}
+                        options={jenisCetakOptions}
+                        placeholder="Pilih jenis..."
+                      />
+                    </div>
+                    <div className="md:col-span-1">
+                      <Label className="text-xs mb-1 block md:hidden font-semibold">Model</Label>
+                      <SmartSelect
+                        value={item.model}
+                        onChange={(value) => updateBiayaPercetakan(item.id, 'model', value)}
+                        options={modelOptions}
+                        placeholder="Pilih model..."
+                        disabled={!item.jenis}
+                      />
+                    </div>
+                    <div className="md:col-span-1">
+                      <Label className="text-xs mb-1 block md:hidden font-semibold">Tipe/Ukuran</Label>
+                      <SmartSelect
+                        value={item.tipe}
+                        onChange={(value) => updateBiayaPercetakan(item.id, 'tipe', value)}
+                        options={tipeOptions}
+                        placeholder="Pilih tipe..."
+                        disabled={!item.model}
+                      />
+                    </div>
+                    <div className="md:col-span-1">
+                      <Label className="text-xs mb-1 block md:hidden font-semibold">Harga (Rp)</Label>
+                      <Input
+                        type="number"
+                        placeholder="0"
+                        min="0"
+                        value={item.harga}
+                        onChange={(e) => updateBiayaPercetakan(item.id, 'harga', e.target.value)}
+                        className="h-10 text-sm"
+                      />
+                    </div>
+                    <div className="md:col-span-1">
+                      <Label className="text-xs mb-1 block md:hidden font-semibold">Jumlah</Label>
+                      <Input
+                        type="number"
+                        placeholder="0"
+                        min="0"
+                        value={item.jumlah}
+                        onChange={(e) => updateBiayaPercetakan(item.id, 'jumlah', e.target.value)}
+                        className="h-10 text-sm"
+                      />
+                    </div>
+                    <div className="md:col-span-1">
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant="destructive"
+                        onClick={() => hapusBiayaPercetakan(item.id)}
+                        className="w-full"
+                      >
+                        <Trash2 size={14} className="mr-1.5" />
+                        Hapus
+                      </Button>
+                    </div>
                   </div>
                 );
               })}
             </div>
           ) : (
-            <p className="text-sm text-gray-500 italic">Belum ada biaya percetakan</p>
+            <p className="text-xs sm:text-sm text-gray-500 italic">Belum ada biaya percetakan</p>
           )}
         </div>
 
         {/* Jasa */}
         <div>
-          <div className="flex items-center justify-between mb-3">
-            <Label className="text-base font-bold">Jasa</Label>
-            <Button type="button" size="sm" variant="outline" onClick={tambahBiayaJasa}>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+            <Label className="text-sm sm:text-base font-bold">Jasa</Label>
+            <Button type="button" size="sm" variant="outline" onClick={tambahBiayaJasa} className="w-full sm:w-auto">
               <Plus size={14} className="mr-1" />
               Tambah Jasa
             </Button>
           </div>
           
-          {/* Label Header Kolom */}
+          {/* Label Header Kolom - Hidden on mobile */}
           {biayaJasa.length > 0 && (
-            <div className="grid grid-cols-6 gap-2 px-3 mb-2">
+            <div className="hidden md:grid md:grid-cols-6 gap-2 px-3 mb-2">
               <Label className="text-xs font-bold text-gray-600 uppercase">Jasa</Label>
               <Label className="text-xs font-bold text-gray-600 uppercase">Jenis</Label>
               <Label className="text-xs font-bold text-gray-600 uppercase">Tipe</Label>
@@ -2011,61 +2112,82 @@ function BiayaProduksiSection({
           )}
           
           {biayaJasa.length > 0 ? (
-            <div className="space-y-2">
+            <div className="space-y-3">
               {biayaJasa.map(item => {
                 const jenisOptions = getFilteredJasa(item, 'jenis');
                 const tipeOptions = getFilteredJasa(item, 'tipe');
                 
                 return (
-                  <div key={item.id} className="grid grid-cols-6 gap-2 p-3 bg-gray-50 rounded-lg border">
-                    <SmartSelect
-                      value={item.jasa}
-                      onChange={(value) => updateBiayaJasa(item.id, 'jasa', value)}
-                      options={jenisJasaOptions}
-                      placeholder="Pilih jasa..."
-                    />
-                    <SmartSelect
-                      value={item.jenis}
-                      onChange={(value) => updateBiayaJasa(item.id, 'jenis', value)}
-                      options={jenisOptions}
-                      placeholder="Pilih jenis..."
-                      disabled={!item.jasa}
-                    />
-                    <SmartSelect
-                      value={item.tipe}
-                      onChange={(value) => updateBiayaJasa(item.id, 'tipe', value)}
-                      options={tipeOptions}
-                      placeholder="Pilih tipe..."
-                      disabled={!item.jenis}
-                    />
-                    <Input
-                      type="number"
-                      placeholder="0"
-                      min="0"
-                      value={item.harga}
-                      onChange={(e) => updateBiayaJasa(item.id, 'harga', e.target.value)}
-                    />
-                    <Input
-                      type="number"
-                      placeholder="0"
-                      min="0"
-                      value={item.jumlah}
-                      onChange={(e) => updateBiayaJasa(item.id, 'jumlah', e.target.value)}
-                    />
-                    <Button
-                      type="button"
-                      size="sm"
-                      variant="destructive"
-                      onClick={() => hapusBiayaJasa(item.id)}
-                    >
-                      <Trash2 size={14} />
-                    </Button>
+                  <div key={item.id} className="flex flex-col gap-2 md:grid md:grid-cols-6 p-3 bg-gray-50 rounded-lg border">
+                    <div className="md:col-span-1">
+                      <Label className="text-xs mb-1 block md:hidden font-semibold">Jasa</Label>
+                      <SmartSelect
+                        value={item.jasa}
+                        onChange={(value) => updateBiayaJasa(item.id, 'jasa', value)}
+                        options={jenisJasaOptions}
+                        placeholder="Pilih jasa..."
+                      />
+                    </div>
+                    <div className="md:col-span-1">
+                      <Label className="text-xs mb-1 block md:hidden font-semibold">Jenis</Label>
+                      <SmartSelect
+                        value={item.jenis}
+                        onChange={(value) => updateBiayaJasa(item.id, 'jenis', value)}
+                        options={jenisOptions}
+                        placeholder="Pilih jenis..."
+                        disabled={!item.jasa}
+                      />
+                    </div>
+                    <div className="md:col-span-1">
+                      <Label className="text-xs mb-1 block md:hidden font-semibold">Tipe</Label>
+                      <SmartSelect
+                        value={item.tipe}
+                        onChange={(value) => updateBiayaJasa(item.id, 'tipe', value)}
+                        options={tipeOptions}
+                        placeholder="Pilih tipe..."
+                        disabled={!item.jenis}
+                      />
+                    </div>
+                    <div className="md:col-span-1">
+                      <Label className="text-xs mb-1 block md:hidden font-semibold">Harga (Rp)</Label>
+                      <Input
+                        type="number"
+                        placeholder="0"
+                        min="0"
+                        value={item.harga}
+                        onChange={(e) => updateBiayaJasa(item.id, 'harga', e.target.value)}
+                        className="h-10 text-sm"
+                      />
+                    </div>
+                    <div className="md:col-span-1">
+                      <Label className="text-xs mb-1 block md:hidden font-semibold">Jumlah</Label>
+                      <Input
+                        type="number"
+                        placeholder="0"
+                        min="0"
+                        value={item.jumlah}
+                        onChange={(e) => updateBiayaJasa(item.id, 'jumlah', e.target.value)}
+                        className="h-10 text-sm"
+                      />
+                    </div>
+                    <div className="md:col-span-1">
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant="destructive"
+                        onClick={() => hapusBiayaJasa(item.id)}
+                        className="w-full"
+                      >
+                        <Trash2 size={14} className="mr-1.5" />
+                        Hapus
+                      </Button>
+                    </div>
                   </div>
                 );
               })}
             </div>
           ) : (
-            <p className="text-sm text-gray-500 italic">Belum ada biaya jasa</p>
+            <p className="text-xs sm:text-sm text-gray-500 italic">Belum ada biaya jasa</p>
           )}
         </div>
       </CardContent>
@@ -2089,35 +2211,45 @@ function RingkasanOrder({
 }) {
   return (
     <Card className="bg-gradient-to-br from-sky-50 to-blue-50 border-2 border-sky-200">
-      <CardHeader>
-        <CardTitle className="text-2xl">Ringkasan Order</CardTitle>
+      <CardHeader className="p-4 md:p-6">
+        <CardTitle className="text-lg sm:text-xl md:text-2xl">Ringkasan Order</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-4 md:space-y-6 p-4 md:p-6">
         {/* Data Pemesan */}
-        <div className="bg-white p-4 rounded-lg shadow-sm">
-          <h3 className="font-bold text-lg mb-3 text-gray-800">Data Pemesan</h3>
-          <div className="space-y-2 text-sm">
-            <p><span className="font-semibold">Nama:</span> {dataPemesan.nama || '-'}</p>
-            <p><span className="font-semibold">No HP:</span> {dataPemesan.nohp || '-'}</p>
-            <p><span className="font-semibold">Alamat:</span> {dataPemesan.alamat || '-'}</p>
+        <div className="bg-white p-3 md:p-4 rounded-lg shadow-sm">
+          <h3 className="font-bold text-base md:text-lg mb-2 md:mb-3 text-gray-800">Data Pemesan</h3>
+          <div className="space-y-1.5 md:space-y-2 text-xs sm:text-sm">
+            <p className="break-words"><span className="font-semibold">Nama:</span> {dataPemesan.nama || '-'}</p>
+            <p className="break-words"><span className="font-semibold">No HP:</span> {dataPemesan.nohp || '-'}</p>
+            <p className="break-words"><span className="font-semibold">Alamat:</span> {dataPemesan.alamat || '-'}</p>
           </div>
         </div>
 
         {/* Detail Pesanan */}
-        <div className="bg-white p-4 rounded-lg shadow-sm">
-          <h3 className="font-bold text-lg mb-3 text-gray-800">Detail Pesanan ({pesananList.length} item)</h3>
-          <div className="space-y-4">
+        <div className="bg-white p-3 md:p-4 rounded-lg shadow-sm">
+          <h3 className="font-bold text-base md:text-lg mb-2 md:mb-3 text-gray-800">Detail Pesanan ({pesananList.length} item)</h3>
+          <div className="space-y-3 md:space-y-4">
             {pesananList.map((pesanan, index) => {
               let subtotal = 0;
               
               return (
-                <div key={pesanan.id} className="border-l-4 border-sky-500 pl-4 py-2">
-                  <p className="font-semibold text-sky-700">Pesanan #{index + 1}: {pesanan.kategori_produk || '-'}</p>
+                <div key={pesanan.id} className="border-l-4 border-sky-500 pl-3 md:pl-4 py-2">
+                  <p className="font-semibold text-sm md:text-base text-sky-700">Pesanan #{index + 1}: {pesanan.kategori_produk || '-'}</p>
                   
                   {pesanan.kategori_produk === 'Garment' && (
-                    <div className="text-sm mt-2 space-y-1">
-                      <p><span className="font-medium">Detail:</span> {pesanan.produk || '-'} / {pesanan.jenis || '-'} / {pesanan.model || '-'}</p>
-                      <p><span className="font-medium">Bahan:</span> {pesanan.toko || '-'} / {pesanan.jenis_kain || '-'} / {pesanan.warna || '-'}</p>
+                    <div className="text-xs sm:text-sm mt-2 space-y-1 break-words">
+                      <div className="break-words">
+                        <span className="font-medium">Detail:</span>
+                        <span className="block sm:inline ml-0 sm:ml-1">
+                          {pesanan.produk || '-'} / {pesanan.jenis || '-'} / {pesanan.model || '-'}
+                        </span>
+                      </div>
+                      <div className="break-words">
+                        <span className="font-medium">Bahan:</span>
+                        <span className="block sm:inline ml-0 sm:ml-1">
+                          {pesanan.toko || '-'} / {pesanan.jenis_kain || '-'} / {pesanan.warna || '-'}
+                        </span>
+                      </div>
                       
                       {/* Ukuran Pendek */}
                       {pesanan.lengan_pendek && (() => {
@@ -2234,25 +2366,25 @@ function RingkasanOrder({
 
         {/* Biaya Produksi */}
         {(biayaKain.length > 0 || biayaPercetakan.length > 0 || biayaJasa.length > 0) && (
-          <div className="bg-white p-4 rounded-lg shadow-sm">
-            <h3 className="font-bold text-lg mb-3 text-gray-800">Biaya Produksi</h3>
-            <div className="text-sm space-y-2">
+          <div className="bg-white p-3 md:p-4 rounded-lg shadow-sm">
+            <h3 className="font-bold text-base md:text-lg mb-2 md:mb-3 text-gray-800">Biaya Produksi</h3>
+            <div className="text-xs sm:text-sm space-y-1.5 md:space-y-2">
               {biayaKain.map(item => {
                 const total = (parseFloat(item.harga) || 0) * (parseFloat(item.jumlah) || 0);
                 return (
-                  <p key={item.id}><span className="font-medium">Kain:</span> {item.nama} - {formatRupiah(item.harga)} x {item.jumlah} = {formatRupiah(total)}</p>
+                  <p key={item.id} className="break-words"><span className="font-medium">Kain:</span> {item.nama} - {formatRupiah(item.harga)} x {item.jumlah} = {formatRupiah(total)}</p>
                 );
               })}
               {biayaPercetakan.map(item => {
                 const total = (parseFloat(item.harga) || 0) * (parseFloat(item.jumlah) || 0);
                 return (
-                  <p key={item.id}><span className="font-medium">Percetakan:</span> {item.jenis} {item.model} {item.tipe} - {formatRupiah(item.harga)} x {item.jumlah} = {formatRupiah(total)}</p>
+                  <p key={item.id} className="break-words"><span className="font-medium">Percetakan:</span> {item.jenis} {item.model} {item.tipe} - {formatRupiah(item.harga)} x {item.jumlah} = {formatRupiah(total)}</p>
                 );
               })}
               {biayaJasa.map(item => {
                 const total = (parseFloat(item.harga) || 0) * (parseFloat(item.jumlah) || 0);
                 return (
-                  <p key={item.id}><span className="font-medium">Jasa:</span> {item.jasa} {item.jenis} {item.tipe} - {formatRupiah(item.harga)} x {item.jumlah} = {formatRupiah(total)}</p>
+                  <p key={item.id} className="break-words"><span className="font-medium">Jasa:</span> {item.jasa} {item.jenis} {item.tipe} - {formatRupiah(item.harga)} x {item.jumlah} = {formatRupiah(total)}</p>
                 );
               })}
               <p className="font-semibold text-orange-600 pt-2 border-t">Total Biaya Produksi: {formatRupiah(totalBiayaProduksi)}</p>
@@ -2261,28 +2393,28 @@ function RingkasanOrder({
         )}
 
         {/* Pembayaran & Jadwal */}
-        <div className="bg-white p-4 rounded-lg shadow-sm">
-          <h3 className="font-bold text-lg mb-3 text-gray-800">Pembayaran & Jadwal</h3>
-          <div className="space-y-2 text-sm">
-            <p><span className="font-semibold">DP:</span> {formatRupiah(dp)}</p>
-            <p><span className="font-semibold">Tanggal Pesan:</span> {tanggalPesan || '-'}</p>
-            <p><span className="font-semibold">Deadline:</span> {deadline || '-'}</p>
+        <div className="bg-white p-3 md:p-4 rounded-lg shadow-sm">
+          <h3 className="font-bold text-base md:text-lg mb-2 md:mb-3 text-gray-800">Pembayaran & Jadwal</h3>
+          <div className="space-y-1.5 md:space-y-2 text-xs sm:text-sm">
+            <p className="break-words"><span className="font-semibold">DP:</span> {formatRupiah(dp)}</p>
+            <p className="break-words"><span className="font-semibold">Tanggal Pesan:</span> {tanggalPesan || '-'}</p>
+            <p className="break-words"><span className="font-semibold">Deadline:</span> {deadline || '-'}</p>
           </div>
         </div>
 
         {/* Total Summary */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-white p-4 rounded-lg shadow-sm border-l-4 border-green-500">
-            <p className="text-sm text-gray-600 mb-1">Total Tagihan</p>
-            <p className="text-2xl font-bold text-gray-900">{formatRupiah(totalTagihan)}</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
+          <div className="bg-white p-3 sm:p-3.5 md:p-4 rounded-lg shadow-sm border-l-4 border-green-500">
+            <p className="text-[11px] sm:text-xs md:text-sm text-gray-600 mb-1">Total Tagihan</p>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 break-all">{formatRupiah(totalTagihan)}</p>
           </div>
-          <div className="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-500">
-            <p className="text-sm text-gray-600 mb-1">Total Biaya Produksi</p>
-            <p className="text-2xl font-bold text-gray-900">{formatRupiah(totalBiayaProduksi)}</p>
+          <div className="bg-white p-3 sm:p-3.5 md:p-4 rounded-lg shadow-sm border-l-4 border-purple-500">
+            <p className="text-[11px] sm:text-xs md:text-sm text-gray-600 mb-1">Total Biaya Produksi</p>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 break-all">{formatRupiah(totalBiayaProduksi)}</p>
           </div>
-          <div className="bg-white p-4 rounded-lg shadow-sm border-l-4 border-amber-500">
-            <p className="text-sm text-gray-600 mb-1">Sisa Pembayaran</p>
-            <p className="text-2xl font-bold text-amber-600">{formatRupiah(sisaBayar)}</p>
+          <div className="bg-white p-3 sm:p-3.5 md:p-4 rounded-lg shadow-sm border-l-4 border-amber-500">
+            <p className="text-[11px] sm:text-xs md:text-sm text-gray-600 mb-1">Sisa Pembayaran</p>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-amber-600 break-all">{formatRupiah(sisaBayar)}</p>
           </div>
         </div>
         
