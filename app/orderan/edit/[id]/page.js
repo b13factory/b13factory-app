@@ -2306,14 +2306,14 @@ function RingkasanOrder({
 }) {
   return (
     <Card className="bg-gradient-to-br from-sky-50 to-blue-50 border-2 border-sky-200">
-      <CardHeader>
-        <CardTitle className="text-2xl">Ringkasan Order</CardTitle>
+      <CardHeader className="p-4 sm:p-6">
+        <CardTitle className="text-lg sm:text-xl md:text-2xl">Ringkasan Order</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-4 sm:space-y-6 p-4 sm:p-6">
         {/* Data Pemesan */}
-        <div className="bg-white p-4 rounded-lg shadow-sm">
-          <h3 className="font-bold text-lg mb-3 text-gray-800">Data Pemesan</h3>
-          <div className="space-y-2 text-sm">
+        <div className="bg-white p-3 sm:p-4 rounded-lg shadow-sm">
+          <h3 className="font-bold text-base sm:text-lg mb-2 sm:mb-3 text-gray-800">Data Pemesan</h3>
+          <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
             <p><span className="font-semibold">Nama:</span> {dataPemesan.nama || '-'}</p>
             <p><span className="font-semibold">No HP:</span> {dataPemesan.nohp || '-'}</p>
             <p><span className="font-semibold">Alamat:</span> {dataPemesan.alamat || '-'}</p>
@@ -2321,9 +2321,9 @@ function RingkasanOrder({
         </div>
 
         {/* Detail Pesanan */}
-        <div className="bg-white p-4 rounded-lg shadow-sm">
-          <h3 className="font-bold text-lg mb-3 text-gray-800">Detail Pesanan ({pesananList.length} item)</h3>
-          <div className="space-y-4">
+        <div className="bg-white p-3 sm:p-4 rounded-lg shadow-sm">
+          <h3 className="font-bold text-base sm:text-lg mb-2 sm:mb-3 text-gray-800">Detail Pesanan ({pesananList.length} item)</h3>
+          <div className="space-y-3 sm:space-y-4">
             {pesananList.map((pesanan, index) => {
               let subtotal = 0;
               
