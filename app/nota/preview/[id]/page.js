@@ -492,25 +492,25 @@ export default function PreviewNotaPage() {
             {/* Header */}
             <div className="mb-4">
               {/* Company Info - Left Aligned with Logo */}
-              <div className="flex items-start gap-4 mb-3">
+              <div className="flex items-start gap-3 mb-3">
                 {/* Logo */}
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 mt-4">
                   <img 
                     src="/LOGO-NOTA.png" 
                     alt="B13 Garment & Adv Logo" 
-                    className="w-16 h-16 object-contain"
+                    className="w-20 h-20 object-right-bottom"
                   />
                 </div>
                 
                 {/* Company Details */}
                 <div className="flex-1">
-                  <h1 className="text-lg font-bold text-black mb-1">
+                  <h1 className="text-3xl font-bold text-black mb-2">
                     B13 Garment & Advertising
                   </h1>
-                  <p className="text-xs text-black leading-relaxed">
+                  <p className="text-sm text-black leading-relaxed mt-1">
                     Jl. Arowana, Prm. Kebonagung Indah Blk.13 No.16, Kec.Kaliwates - Jember
                   </p>
-                  <p className="text-xs text-black mt-1">
+                  <p className="text-sm text-black mb-1 mt-0">
                     No. Hp : 081234036663 / Email : b13factory@gmail.com
                   </p>
                 </div>
@@ -523,12 +523,12 @@ export default function PreviewNotaPage() {
             {/* Order Number & Date - Compact */}
             <div className="flex justify-between items-start mb-3">
               <div>
-                <p className="text-xs font-semibold text-black">
+                <p className="text-l font-bold text-black">
                   No. Order: <span className="text-black">{notaData.nota_number}</span>
                 </p>
               </div>
               <div className="text-right">
-                <p className="text-xs text-black">
+                <p className="text-sm text-black">
                   Tanggal: <span className="font-semibold">{formatTanggalIndonesia(notaData.tanggal_nota)}</span>
                 </p>
               </div>
@@ -536,7 +536,7 @@ export default function PreviewNotaPage() {
 
             {/* Customer Info - Compact */}
             <div className="mb-3 bg-gray-50 p-2 rounded">
-              <div className="text-xs">
+              <div className="text-m">
                 <p className="mb-1">
                   <span className="font-semibold">Kepada Yth.</span>
                 </p>
@@ -549,7 +549,7 @@ export default function PreviewNotaPage() {
 
             {/* Items Table - Compact */}
             <div className="mb-4 border border-gray-300 rounded overflow-hidden">
-              <table className="w-full text-xs">
+              <table className="w-full text-m">
                 <thead className="bg-gray-100">
                   <tr>
                     <th className="px-2 py-2 text-left font-semibold text-gray-700 border-b border-gray-300">
@@ -561,10 +561,10 @@ export default function PreviewNotaPage() {
                     <th className="px-2 py-2 text-left font-semibold text-gray-700 border-b border-gray-300">
                       Item
                     </th>
-                    <th className="px-2 py-2 text-right font-semibold text-gray-700 border-b border-gray-300">
+                    <th className="px-2 py-2 text-left font-semibold text-gray-700 border-b border-gray-300">
                       Harga
                     </th>
-                    <th className="px-2 py-2 text-right font-semibold text-gray-700 border-b border-gray-300">
+                    <th className="px-2 py-2 text-left font-semibold text-gray-700 border-b border-gray-300">
                       Jumlah
                     </th>
                   </tr>
@@ -578,7 +578,7 @@ export default function PreviewNotaPage() {
                       <td className="px-2 py-2 text-gray-700">
                         <div className="font-medium">{item.banyaknya}</div>
                         {item.keterangan && (
-                          <div className="text-xs text-gray-500 italic">
+                          <div className="text-m text-gray-500 italic">
                             {item.keterangan}
                           </div>
                         )}
@@ -586,10 +586,10 @@ export default function PreviewNotaPage() {
                       <td className="px-2 py-2 text-gray-900 font-medium">
                         {item.nama_item}
                       </td>
-                      <td className="px-2 py-2 text-gray-700 text-right">
+                      <td className="px-2 py-2 text-gray-700 text-left">
                         {formatRupiah(item.harga)}
                       </td>
-                      <td className="px-2 py-2 text-gray-900 font-semibold text-right">
+                      <td className="px-2 py-2 text-gray-900 font-semibold text-left">
                         {formatRupiah(item.jumlah)}
                       </td>
                     </tr>
@@ -602,38 +602,44 @@ export default function PreviewNotaPage() {
             <div className="flex justify-between items-start mb-6">
               {/* Left: Info */}
               <div className="space-y-2">
-                <div className="text-xs text-black">
-                  <p className="font-semibold">Total Qty: <span className="text-black">{calculateTotalQty()}</span></p>
+                <div className="text-m text-black">
+                  <p className="font-semibold">Total Qty : <span className="text-black">{calculateTotalQty()}</span></p>
                 </div>
 
                 {notaData.catatan && (
                   <div className="max-w-xs">
-                    <p className="text-xs font-semibold text-black mb-1">Catatan:</p>
-                    <p className="text-xs text-black italic">{notaData.catatan}</p>
+                    <p className="text-sm font-semibold text-black mb-1">Catatan :</p>
+                    <p className="text-sm text-black italic">{notaData.catatan}</p>
                   </div>
                 )}
               </div>
 
-              {/* Right: Payment Summary - No colored background, compact */}
-              <div className="border border-black rounded p-3 min-w-[250px]">
-                <div className="space-y-2 text-xs">
-                  <div className="flex justify-between items-center pb-1 border-b border-black">
-                    <span className="font-semibold text-black">Total Tagihan</span>
-                    <span className="font-bold text-black">
+              {/* Right: Payment Summary - PERBAIKAN ALIGNMENT TITIK DUA */}
+              <div className="border border-black rounded p-3 min-w-[300px]">
+                <div className="space-y-2 text-m">
+                  {/* Total Tagihan */}
+                  <div className="flex items-center pb-1">
+                    <span className="font-semibold text-black w-32">Total Tagihan</span>
+                    <span className="font-semibold text-black mx-2">:</span>
+                    <span className="font-bold text-black flex-1 text-right">
                       {formatRupiah(notaData.total_tagihan)}
                     </span>
                   </div>
-                  
-                  <div className="flex justify-between items-center pb-1 border-b border-black">
-                    <span className="font-semibold text-black">DP/Bayar</span>
-                    <span className="font-bold text-black">
+
+                  {/* DP/Bayar */}
+                  <div className="flex items-center pb-1">
+                    <span className="font-semibold text-black w-32">DP/Bayar</span>
+                    <span className="font-semibold text-black mx-2">:</span>
+                    <span className="font-bold text-black flex-1 text-right">
                       {formatRupiah(notaData.dp)}
                     </span>
                   </div>
-                  
-                  <div className="flex justify-between items-center pt-1">
-                    <span className="font-bold text-black">Sisa</span>
-                    <span className="font-bold text-black">
+
+                  {/* Sisa */}
+                  <div className="flex items-center pt-1">
+                    <span className="font-bold text-red-600 w-32">Sisa</span>
+                    <span className="font-bold text-red-600 mx-2">:</span>
+                    <span className="font-bold text-red-600 flex-1 text-right">
                       {formatRupiah(notaData.sisa)}
                     </span>
                   </div>
@@ -644,19 +650,19 @@ export default function PreviewNotaPage() {
             {/* Signature Section - Compact */}
             <div className="flex justify-between items-end mt-8 pt-4 border-t border-gray-300">
               <div className="text-center">
-                <p className="text-xs font-semibold text-gray-700 mb-12">Tanda Terima</p>
-                <div className="w-40 border-b border-gray-400"></div>
+                <p className="text-m font-semibold text-gray-700 mb-12">Tanda Terima</p>
+                <div className="w-40 border-b border-gray-400 mt-20"></div>
               </div>
               
               <div className="text-center">
-                <p className="text-xs font-semibold text-gray-700 mb-12">{notaData.nama_cs || 'Cs. Ratih'}</p>
-                <div className="w-40 border-b border-gray-400"></div>
+                <p className="text-m font-semibold text-gray-700 mb-12">{notaData.nama_cs || 'Cs. Ratih'}</p>
+                <div className="w-40 border-b border-gray-400 mt-20"></div>
               </div>
             </div>
 
             {/* Thank You Message */}
-            <div className="text-center mt-6">
-              <p className="text-sm font-bold text-gray-800">*** Terima Kasih ***</p>
+            <div className="text-center mt-0">
+              <p className="text-m font-bold text-gray-800">*** Terima Kasih ***</p>
             </div>
           </div>
         </div>
