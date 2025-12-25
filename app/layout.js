@@ -1,7 +1,7 @@
 // app/layout.js
 import { Inter } from 'next/font/google';
 import './globals.css';
-import Sidebar from '@/components/Sidebar';
+import LayoutWrapper from '@/components/LayoutWrapper';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -35,18 +35,10 @@ export default function RootLayout({ children }) {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="B13 Garment" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
       </head>
       <body className={`${inter.className} bg-slate-100`}>
-        <div className="flex min-h-screen">
-          <Sidebar />
-          
-          {/* Konten Utama */}
-          <main className="flex-1 lg:pl-64">
-            <div className="pt-20 lg:pt-0 p-4 sm:p-6 lg:p-8">
-              {children}
-            </div>
-          </main>
-        </div>
+        <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>
   );
