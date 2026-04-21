@@ -133,23 +133,23 @@ export default function NotaPage() {
   }
 
   return (
-    <div className="space-y-4 md:space-y-6 pb-6 sm:pb-8">
+    <div className="space-y-3 sm:space-y-4 md:space-y-6 pb-6 sm:pb-8">
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-blue-500 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl shadow-lg">
         <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-1 sm:mb-2">
-          <div className="p-1.5 sm:p-2 md:p-3 bg-white/20 backdrop-blur-sm rounded-lg sm:rounded-xl">
+          <div className="p-1.5 sm:p-2 md:p-3 bg-white/20 backdrop-blur-sm rounded-lg sm:rounded-xl flex-shrink-0">
             <FileText className="text-white" size={20} />
           </div>
-          <div>
-            <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white">Halaman Nota</h1>
+          <div className="min-w-0 flex-1">
+            <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white truncate">Halaman Nota</h1>
             <p className="text-blue-100 mt-0.5 text-[11px] sm:text-xs md:text-sm">Kelola dan cetak nota pesanan pelanggan</p>
           </div>
         </div>
       </div>
 
       {/* Search Bar */}
-      <div className="bg-white p-4 sm:p-6 rounded-lg sm:rounded-xl shadow-sm">
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+      <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl shadow-sm">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
             <Input
@@ -164,14 +164,14 @@ export default function NotaPage() {
             <Button
               variant="outline"
               onClick={() => setSearchQuery('')}
-              className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base"
+              className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base w-full sm:w-auto"
             >
               Reset
             </Button>
           )}
         </div>
         {searchQuery && (
-          <p className="mt-3 text-xs sm:text-sm text-gray-600">
+          <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-gray-600">
             Ditemukan <span className="font-semibold text-blue-600">{filteredOrders.length}</span> hasil
           </p>
         )}
@@ -204,74 +204,61 @@ export default function NotaPage() {
                 <div 
                   key={order.id} 
                   onClick={() => handleRowClick(order)}
-                  className={`p-4 transition-colors cursor-pointer ${
+                  className={`p-3 sm:p-4 transition-colors cursor-pointer ${
                     isSelected 
                       ? 'bg-blue-100' 
-                      : 'hover:bg-gray-50'
+                      : 'hover:bg-gray-50 active:bg-gray-100'
                   }`}
                 >
-                  {/* Header Card - Nama & No Order */}
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex items-center gap-3 flex-1 min-w-0">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+                  {/* Header Card - Nama, No Order & Status */}
+                  <div className="flex items-start justify-between gap-2 mb-3">
+                    <div className="flex items-center gap-2.5 flex-1 min-w-0">
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
                         {order.nama ? order.nama.charAt(0).toUpperCase() : '?'}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-gray-900 truncate">{order.nama || '-'}</h3>
-                        <p className="text-sm text-blue-600 font-medium">{order.no_orderan || '-'}</p>
+                        <h3 className="font-semibold text-sm sm:text-base text-gray-900 truncate">{order.nama || '-'}</h3>
+                        <p className="text-xs sm:text-sm text-blue-600 font-medium truncate">{order.no_orderan || '-'}</p>
                       </div>
                     </div>
-                  </div>
-
-                  {/* Status Badge */}
-                  <div className="mb-3">
                     {isPaid ? (
-                      <div className="inline-flex items-center gap-1.5 text-green-600 bg-green-50 px-3 py-1.5 rounded-full">
-                        <CheckCircle size={16} />
-                        <span className="text-xs font-semibold">Lunas</span>
+                      <div className="inline-flex items-center gap-1 text-green-600 bg-green-50 px-2 py-1 rounded-full flex-shrink-0">
+                        <CheckCircle size={12} />
+                        <span className="text-[10px] sm:text-xs font-semibold">Lunas</span>
                       </div>
                     ) : (
-                      <div className="inline-flex items-center gap-1.5 text-amber-600 bg-amber-50 px-3 py-1.5 rounded-full">
-                        <XCircle size={16} />
-                        <span className="text-xs font-semibold">Belum Lunas</span>
+                      <div className="inline-flex items-center gap-1 text-amber-600 bg-amber-50 px-2 py-1 rounded-full flex-shrink-0">
+                        <XCircle size={12} />
+                        <span className="text-[10px] sm:text-xs font-semibold whitespace-nowrap">Belum Lunas</span>
                       </div>
                     )}
                   </div>
 
-                  {/* Tanggal Info */}
-                  <div className="mb-3 p-3 bg-blue-50 rounded-lg">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Calendar size={16} className="text-blue-600" />
-                      <span className="text-xs font-semibold text-blue-600 uppercase">Tanggal</span>
-                    </div>
-                    <div className="text-sm text-gray-700">
-                      <span className="font-medium">Pesan:</span> {formatTanggalSingkat(order.tanggal_pesan)}
-                    </div>
-                    <div className="text-sm text-gray-700">
-                      <span className="font-medium">Deadline:</span> {formatTanggalSingkat(order.deadline)}
-                    </div>
-                  </div>
-
-                  {/* Financial Info */}
-                  <div className="mb-4 p-3 bg-amber-50 rounded-lg">
-                    <div className="flex items-center gap-2 mb-2">
-                      <DollarSign size={16} className="text-amber-600" />
-                      <span className="text-xs font-semibold text-amber-600 uppercase">Pembayaran</span>
-                    </div>
-                    <div className="space-y-1">
-                      <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">Total Tagihan</span>
-                        <span className="font-bold text-gray-900">{formatRupiah(order.total_tagihan || 0)}</span>
+                  {/* Compact Info Grid: Tanggal + Keuangan */}
+                  <div className="grid grid-cols-2 gap-2 mb-3">
+                    <div className="p-2.5 bg-blue-50 rounded-lg">
+                      <div className="flex items-center gap-1.5 mb-1.5">
+                        <Calendar size={12} className="text-blue-600 flex-shrink-0" />
+                        <span className="text-[10px] font-semibold text-blue-600 uppercase tracking-wide">Tanggal</span>
                       </div>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">DP/Bayar</span>
-                        <span className="font-semibold text-green-600">{formatRupiah(order.dp || 0)}</span>
+                      <div className="text-[11px] sm:text-xs text-gray-700 leading-tight">
+                        <p className="truncate"><span className="text-gray-500">Pesan:</span> <span className="font-medium">{formatTanggalSingkat(order.tanggal_pesan)}</span></p>
+                        <p className="truncate mt-0.5"><span className="text-gray-500">DL:</span> <span className="font-medium">{formatTanggalSingkat(order.deadline)}</span></p>
                       </div>
-                      <div className="flex justify-between text-sm pt-1 border-t border-amber-200">
-                        <span className="font-medium text-gray-700">Sisa</span>
-                        <span className={`font-bold ${isPaid ? 'text-green-600' : 'text-red-600'}`}>
-                          {formatRupiah(order.sisa || 0)}
-                        </span>
+                    </div>
+                    <div className="p-2.5 bg-amber-50 rounded-lg">
+                      <div className="flex items-center gap-1.5 mb-1.5">
+                        <DollarSign size={12} className="text-amber-600 flex-shrink-0" />
+                        <span className="text-[10px] font-semibold text-amber-600 uppercase tracking-wide">Tagihan</span>
+                      </div>
+                      <div className="text-[11px] sm:text-xs text-gray-700 leading-tight">
+                        <p className="truncate"><span className="text-gray-500">Total:</span> <span className="font-bold text-gray-900">{formatRupiah(order.total_tagihan || 0)}</span></p>
+                        <p className="truncate mt-0.5">
+                          <span className="text-gray-500">Sisa:</span>{' '}
+                          <span className={`font-bold ${isPaid ? 'text-green-600' : 'text-red-600'}`}>
+                            {formatRupiah(order.sisa || 0)}
+                          </span>
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -282,18 +269,18 @@ export default function NotaPage() {
                       size="sm"
                       variant="outline"
                       onClick={() => handlePreview(order.id)}
-                      className="flex-1 text-blue-600 border-blue-300 hover:bg-blue-50 h-11"
+                      className="flex-1 text-blue-600 border-blue-300 hover:bg-blue-50 h-10 text-xs sm:text-sm"
                     >
-                      <Eye size={16} className="mr-1.5" />
+                      <Eye size={14} className="mr-1" />
                       Preview
                     </Button>
                     <Button
                       size="sm"
                       variant="outline"
                       onClick={() => handleEdit(order.id)}
-                      className="flex-1 text-green-600 border-green-300 hover:bg-green-50 h-11"
+                      className="flex-1 text-green-600 border-green-300 hover:bg-green-50 h-10 text-xs sm:text-sm"
                     >
-                      <Edit size={16} className="mr-1.5" />
+                      <Edit size={14} className="mr-1" />
                       Edit
                     </Button>
                   </div>
@@ -406,35 +393,35 @@ export default function NotaPage() {
           </div>
         )}
 
-        {/* Pagination */}
+                {/* Pagination */}
         {totalPages > 1 && (
-          <div className="px-4 sm:px-6 py-4 bg-gray-50 border-t border-gray-200">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-              <div className="text-xs sm:text-sm text-gray-600">
-                Menampilkan <span className="font-semibold">{startIndex + 1}</span> - 
-                <span className="font-semibold"> {Math.min(endIndex, filteredOrders.length)}</span> dari{' '}
+          <div className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 bg-gray-50 border-t border-gray-200">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4">
+              <div className="text-[11px] sm:text-sm text-gray-600 order-2 sm:order-1">
+                <span className="font-semibold">{startIndex + 1}</span>-
+                <span className="font-semibold">{Math.min(endIndex, filteredOrders.length)}</span> dari{' '}
                 <span className="font-semibold">{filteredOrders.length}</span> nota
               </div>
               
-              <div className="flex items-center gap-1.5 sm:gap-2">
+              <div className="flex items-center gap-1 sm:gap-2 order-1 sm:order-2">
                 <button
                   onClick={() => goToPage(currentPage - 1)}
                   disabled={currentPage === 1}
                   className={`p-2 rounded-lg transition-all ${
                     currentPage === 1
                       ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                      : 'bg-blue-100 text-blue-600 hover:bg-blue-200'
+                      : 'bg-blue-100 text-blue-600 hover:bg-blue-200 active:bg-blue-300'
                   }`}
                 >
                   <ChevronLeft size={18} />
                 </button>
 
-                <div className="flex gap-1">
+                <div className="flex gap-1 overflow-x-auto max-w-[60vw] sm:max-w-none scrollbar-hide">
                   {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
                     <button
                       key={page}
                       onClick={() => goToPage(page)}
-                      className={`px-3 sm:px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                      className={`px-2.5 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all min-w-[34px] sm:min-w-[40px] ${
                         page === currentPage
                           ? 'bg-blue-600 text-white shadow-lg'
                           : 'bg-gray-100 text-gray-700 hover:bg-blue-100'
@@ -451,7 +438,7 @@ export default function NotaPage() {
                   className={`p-2 rounded-lg transition-all ${
                     currentPage === totalPages
                       ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                      : 'bg-blue-100 text-blue-600 hover:bg-blue-200'
+                      : 'bg-blue-100 text-blue-600 hover:bg-blue-200 active:bg-blue-300'
                   }`}
                 >
                   <ChevronRight size={18} />
