@@ -379,29 +379,29 @@ export default function EditNotaPage() {
   const totalTagihan = calculateTotal();
   const sisa = totalTagihan - (parseFloat(dp) || 0);
 
-  return (
-    <div className="space-y-6 pb-8">
+    return (
+    <div className="space-y-3 sm:space-y-4 md:space-y-6 pb-6 sm:pb-8">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-500 p-6 rounded-xl shadow-lg">
-        <div className="flex items-center gap-4 mb-2">
-          <div className="p-3 bg-white/20 backdrop-blur-sm rounded-xl">
-            <FileEdit className="text-white" size={32} />
+      <div className="bg-gradient-to-r from-blue-600 to-blue-500 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl shadow-lg">
+        <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-1 sm:mb-2">
+          <div className="p-1.5 sm:p-2 md:p-3 bg-white/20 backdrop-blur-sm rounded-lg sm:rounded-xl flex-shrink-0">
+            <FileEdit className="text-white" size={20} />
           </div>
-          <div>
-            <h1 className="text-3xl font-bold text-white">Edit Nota</h1>
-            <p className="text-blue-100 mt-1">Edit manual data nota tanpa mengubah data orderan asli</p>
+          <div className="min-w-0 flex-1">
+            <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white truncate">Edit Nota</h1>
+            <p className="text-blue-100 mt-0.5 text-[11px] sm:text-xs md:text-sm">Edit manual data nota tanpa mengubah data orderan asli</p>
           </div>
         </div>
       </div>
 
       {/* Info Box */}
       <Card className="border-blue-200 bg-blue-50">
-        <CardContent className="pt-6">
-          <div className="flex items-start gap-3">
-            <Info className="text-blue-600 flex-shrink-0 mt-1" size={24} />
-            <div>
-              <h3 className="font-semibold text-blue-900 mb-1">Informasi Penting</h3>
-              <p className="text-sm text-blue-800">
+        <CardContent className="pt-4 sm:pt-6 p-3 sm:p-4 md:p-6">
+          <div className="flex items-start gap-2 sm:gap-3">
+            <Info className="text-blue-600 flex-shrink-0 mt-0.5 sm:mt-1" size={20} />
+            <div className="min-w-0 flex-1">
+              <h3 className="font-semibold text-sm sm:text-base text-blue-900 mb-1">Informasi Penting</h3>
+              <p className="text-xs sm:text-sm text-blue-800 leading-relaxed">
                 Perubahan yang Anda simpan di sini <strong>tidak akan mengubah data orderan asli</strong>. 
                 Data ini hanya untuk keperluan pencetakan nota dan akan digunakan sebagai acuan 
                 selama data orderan tidak ada perubahan.
@@ -413,40 +413,40 @@ export default function EditNotaPage() {
 
       {/* Data Customer (Read-only) */}
       <Card>
-        <CardHeader className="bg-gradient-to-r from-gray-50 to-gray-100 border-b">
-          <CardTitle className="flex items-center gap-2">
+        <CardHeader className="bg-gradient-to-r from-gray-50 to-gray-100 border-b p-3 sm:p-4 md:p-6">
+          <CardTitle className="text-base sm:text-lg flex flex-wrap items-center gap-2">
             <span>Data Pelanggan</span>
-            <span className="text-sm font-normal text-gray-500">(Tidak dapat diubah)</span>
+            <span className="text-[11px] sm:text-sm font-normal text-gray-500">(Tidak dapat diubah)</span>
           </CardTitle>
-          <CardDescription>Data pelanggan dari orderan asli</CardDescription>
+          <CardDescription className="text-xs sm:text-sm">Data pelanggan dari orderan asli</CardDescription>
         </CardHeader>
-        <CardContent className="pt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <CardContent className="pt-4 sm:pt-6 p-3 sm:p-4 md:p-6 grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
           <div>
-            <Label className="text-sm font-semibold text-gray-600">Nama</Label>
-            <p className="text-base font-medium mt-1">{order.nama}</p>
+            <Label className="text-xs sm:text-sm font-semibold text-gray-600">Nama</Label>
+            <p className="text-sm sm:text-base font-medium mt-1 break-words">{order.nama}</p>
           </div>
           <div>
-            <Label className="text-sm font-semibold text-gray-600">No. HP</Label>
-            <p className="text-base font-medium mt-1">{order.nohp}</p>
+            <Label className="text-xs sm:text-sm font-semibold text-gray-600">No. HP</Label>
+            <p className="text-sm sm:text-base font-medium mt-1 break-all">{order.nohp}</p>
           </div>
           <div>
-            <Label className="text-sm font-semibold text-gray-600">Alamat</Label>
-            <p className="text-base font-medium mt-1">{order.alamat}</p>
+            <Label className="text-xs sm:text-sm font-semibold text-gray-600">Alamat</Label>
+            <p className="text-sm sm:text-base font-medium mt-1 break-words leading-relaxed">{order.alamat}</p>
           </div>
         </CardContent>
       </Card>
 
       {/* Form Edit Nota */}
       <Card>
-        <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-50 border-b">
-          <CardTitle>Detail Nota</CardTitle>
-          <CardDescription>Edit informasi nota sesuai kebutuhan</CardDescription>
+        <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-50 border-b p-3 sm:p-4 md:p-6">
+          <CardTitle className="text-base sm:text-lg">Detail Nota</CardTitle>
+          <CardDescription className="text-xs sm:text-sm">Edit informasi nota sesuai kebutuhan</CardDescription>
         </CardHeader>
-        <CardContent className="pt-6 space-y-6">
+        <CardContent className="pt-4 sm:pt-6 p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-6">
           {/* Nomor Nota, Tanggal & Nama CS */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
             <div>
-              <Label htmlFor="nota_number" className="text-base font-semibold">
+              <Label htmlFor="nota_number" className="text-sm sm:text-base font-semibold">
                 Nomor Nota <span className="text-red-500">*</span>
               </Label>
               <Input
@@ -454,11 +454,11 @@ export default function EditNotaPage() {
                 value={notaNumber}
                 onChange={(e) => setNotaNumber(e.target.value)}
                 placeholder="Contoh: B13-001"
-                className="mt-2"
+                className="mt-2 h-11 md:h-10 text-base"
               />
             </div>
             <div>
-              <Label htmlFor="tanggal_nota" className="text-base font-semibold">
+              <Label htmlFor="tanggal_nota" className="text-sm sm:text-base font-semibold">
                 Tanggal Nota <span className="text-red-500">*</span>
               </Label>
               <Input
@@ -466,11 +466,11 @@ export default function EditNotaPage() {
                 type="date"
                 value={tanggalNota}
                 onChange={(e) => setTanggalNota(e.target.value)}
-                className="mt-2"
+                className="mt-2 h-11 md:h-10 text-base"
               />
             </div>
             <div>
-              <Label htmlFor="nama_cs" className="text-base font-semibold">
+              <Label htmlFor="nama_cs" className="text-sm sm:text-base font-semibold">
                 Nama CS <span className="text-red-500">*</span>
               </Label>
               <Input
@@ -478,93 +478,104 @@ export default function EditNotaPage() {
                 value={namaCs}
                 onChange={(e) => setNamaCs(e.target.value)}
                 placeholder="Contoh: Cs. Ratih"
-                className="mt-2"
+                className="mt-2 h-11 md:h-10 text-base"
               />
             </div>
           </div>
 
           {/* Items List */}
           <div>
-            <div className="flex items-center justify-between mb-4">
-              <Label className="text-base font-semibold">Item Pesanan</Label>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3 mb-3 sm:mb-4">
+              <Label className="text-sm sm:text-base font-semibold">Item Pesanan</Label>
               <Button
                 type="button"
                 size="sm"
                 variant="outline"
                 onClick={handleAddItem}
+                className="w-full sm:w-auto"
               >
                 <Plus size={16} className="mr-2" />
                 Tambah Item
               </Button>
             </div>
 
-            <div className="border rounded-lg overflow-hidden">
-              <table className="w-full">
+            {/* Hint scroll untuk mobile */}
+            <p className="lg:hidden text-[11px] sm:text-xs text-gray-500 italic mb-2 flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/><path d="m15 18-6-6 6-6"/></svg>
+              Geser ke samping untuk melihat &amp; mengedit semua kolom
+            </p>
+
+            {/* Tabel dengan horizontal scroll agar kolom tidak mengecil di mobile */}
+            <div className="border rounded-lg overflow-x-auto -mx-3 sm:mx-0 shadow-inner">
+              <table className="w-full min-w-[880px]">
                 <thead className="bg-gray-100 border-b">
                   <tr>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">No</th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Banyaknya</th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Nama Item</th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Keterangan</th>
-                    <th className="px-4 py-3 text-right text-sm font-semibold text-gray-700">Harga</th>
-                    <th className="px-4 py-3 text-right text-sm font-semibold text-gray-700">Jumlah</th>
-                    <th className="px-4 py-3 text-center text-sm font-semibold text-gray-700">Aksi</th>
+                    <th className="px-3 py-3 text-left text-xs sm:text-sm font-semibold text-gray-700 w-12">No</th>
+                    <th className="px-3 py-3 text-left text-xs sm:text-sm font-semibold text-gray-700 w-28">Banyaknya</th>
+                    <th className="px-3 py-3 text-left text-xs sm:text-sm font-semibold text-gray-700 min-w-[200px]">Nama Item</th>
+                    <th className="px-3 py-3 text-left text-xs sm:text-sm font-semibold text-gray-700 min-w-[160px]">Keterangan</th>
+                    <th className="px-3 py-3 text-right text-xs sm:text-sm font-semibold text-gray-700 w-36">Harga</th>
+                    <th className="px-3 py-3 text-right text-xs sm:text-sm font-semibold text-gray-700 w-36">Jumlah</th>
+                    <th className="px-3 py-3 text-center text-xs sm:text-sm font-semibold text-gray-700 w-16">Aksi</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   {items.length === 0 ? (
                     <tr>
-                      <td colSpan="7" className="px-4 py-8 text-center text-gray-500">
-                        Belum ada item. Klik tombol "Tambah Item" untuk menambah.
+                      <td colSpan="7" className="px-4 py-8 text-center text-sm text-gray-500">
+                        Belum ada item. Klik tombol &quot;Tambah Item&quot; untuk menambah.
                       </td>
                     </tr>
                   ) : (
                     items.map((item, index) => (
                       <tr key={item.id} className="hover:bg-gray-50">
-                        <td className="px-4 py-3 text-sm">{index + 1}</td>
-                        <td className="px-4 py-3">
+                        <td className="px-3 py-3 text-sm text-gray-700">{index + 1}</td>
+                        <td className="px-3 py-3">
                           <Input
                             type="text"
                             value={item.banyaknya}
                             onChange={(e) => handleUpdateItem(item.id, 'banyaknya', e.target.value)}
-                            className="w-24"
+                            className="w-full min-w-[90px] h-10 text-sm"
                             placeholder="1 pcs"
                           />
                         </td>
-                        <td className="px-4 py-3">
+                        <td className="px-3 py-3">
                           <Input
                             type="text"
                             value={item.nama_item}
                             onChange={(e) => handleUpdateItem(item.id, 'nama_item', e.target.value)}
                             placeholder="Nama item"
+                            className="w-full h-10 text-sm"
                           />
                         </td>
-                        <td className="px-4 py-3">
+                        <td className="px-3 py-3">
                           <Input
                             type="text"
                             value={item.keterangan}
                             onChange={(e) => handleUpdateItem(item.id, 'keterangan', e.target.value)}
                             placeholder="Keterangan"
+                            className="w-full h-10 text-sm"
                           />
                         </td>
-                        <td className="px-4 py-3">
+                        <td className="px-3 py-3">
                           <Input
                             type="number"
                             value={item.harga}
                             onChange={(e) => handleUpdateItem(item.id, 'harga', e.target.value)}
-                            className="w-32 text-right"
+                            className="w-full min-w-[120px] h-10 text-sm text-right"
                             placeholder="0"
                           />
                         </td>
-                        <td className="px-4 py-3 text-right font-semibold">
+                        <td className="px-3 py-3 text-right font-semibold text-sm whitespace-nowrap">
                           {formatRupiah(item.jumlah || 0)}
                         </td>
-                        <td className="px-4 py-3 text-center">
+                        <td className="px-3 py-3 text-center">
                           <Button
                             type="button"
                             size="sm"
                             variant="destructive"
                             onClick={() => handleRemoveItem(item.id)}
+                            className="h-9 w-9 p-0"
                           >
                             <Trash2 size={14} />
                           </Button>
@@ -578,9 +589,9 @@ export default function EditNotaPage() {
           </div>
 
           {/* Pembayaran */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
             <div>
-              <Label htmlFor="dp" className="text-base font-semibold">
+              <Label htmlFor="dp" className="text-sm sm:text-base font-semibold">
                 DP / Bayar (Rp) <span className="text-red-500">*</span>
               </Label>
               <Input
@@ -590,14 +601,14 @@ export default function EditNotaPage() {
                 onChange={(e) => setDp(e.target.value)}
                 placeholder="0"
                 min="0"
-                className="mt-2"
+                className="mt-2 h-11 md:h-10 text-base"
               />
             </div>
           </div>
 
           {/* Catatan */}
           <div>
-            <Label htmlFor="catatan" className="text-base font-semibold">
+            <Label htmlFor="catatan" className="text-sm sm:text-base font-semibold">
               Catatan Tambahan
             </Label>
             <Textarea
@@ -606,7 +617,7 @@ export default function EditNotaPage() {
               onChange={(e) => setCatatan(e.target.value)}
               placeholder="Tambahkan catatan jika diperlukan..."
               rows={3}
-              className="mt-2"
+              className="mt-2 text-base"
             />
           </div>
         </CardContent>
@@ -614,37 +625,38 @@ export default function EditNotaPage() {
 
       {/* Summary */}
       <Card className="border-2 border-blue-200">
-        <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50">
-          <CardTitle>Ringkasan Nota</CardTitle>
+        <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50 p-3 sm:p-4 md:p-6">
+          <CardTitle className="text-base sm:text-lg">Ringkasan Nota</CardTitle>
         </CardHeader>
-        <CardContent className="pt-6">
-          <div className="space-y-4">
-            <div className="flex justify-between items-center pb-3 border-b">
-              <span className="text-gray-600">Total Qty:</span>
-              <span className="font-bold text-lg">{calculateTotalQty()} pcs</span>
+        <CardContent className="pt-4 sm:pt-6 p-3 sm:p-4 md:p-6">
+          <div className="space-y-3 sm:space-y-4">
+            <div className="flex justify-between items-center gap-2 pb-2 sm:pb-3 border-b">
+              <span className="text-sm sm:text-base text-gray-600">Total Qty:</span>
+              <span className="font-bold text-base sm:text-lg">{calculateTotalQty()} pcs</span>
             </div>
-            <div className="flex justify-between items-center pb-3 border-b">
-              <span className="text-gray-600">Total Tagihan:</span>
-              <span className="font-bold text-lg">{formatRupiah(totalTagihan)}</span>
+            <div className="flex justify-between items-center gap-2 pb-2 sm:pb-3 border-b">
+              <span className="text-sm sm:text-base text-gray-600">Total Tagihan:</span>
+              <span className="font-bold text-base sm:text-lg text-right">{formatRupiah(totalTagihan)}</span>
             </div>
-            <div className="flex justify-between items-center pb-3 border-b">
-              <span className="text-gray-600">Bayar/DP:</span>
-              <span className="font-semibold text-green-600 text-lg">{formatRupiah(dp)}</span>
+            <div className="flex justify-between items-center gap-2 pb-2 sm:pb-3 border-b">
+              <span className="text-sm sm:text-base text-gray-600">Bayar/DP:</span>
+              <span className="font-semibold text-green-600 text-base sm:text-lg text-right">{formatRupiah(dp)}</span>
             </div>
-            <div className="flex justify-between items-center pt-2">
-              <span className="text-gray-900 font-bold text-lg">Sisa:</span>
-              <span className="font-bold text-red-600 text-xl">{formatRupiah(sisa)}</span>
+            <div className="flex justify-between items-center gap-2 pt-1 sm:pt-2">
+              <span className="text-gray-900 font-bold text-base sm:text-lg">Sisa:</span>
+              <span className="font-bold text-red-600 text-lg sm:text-xl text-right">{formatRupiah(sisa)}</span>
             </div>
           </div>
         </CardContent>
       </Card>
 
       {/* Action Buttons */}
-      <div className="flex gap-4 justify-end">
+      <div className="flex flex-col-reverse sm:flex-row gap-3 sm:gap-4 sm:justify-end">
         <Button
           variant="outline"
           onClick={() => router.push('/nota')}
           disabled={saving}
+          className="w-full sm:w-auto h-11 sm:h-10 text-base sm:text-sm"
         >
           <ArrowLeft size={18} className="mr-2" />
           Kembali
@@ -652,7 +664,7 @@ export default function EditNotaPage() {
         <Button
           onClick={handleSave}
           disabled={saving}
-          className="bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 min-w-[150px]"
+          className="w-full sm:w-auto h-11 sm:h-10 text-base sm:text-sm bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 sm:min-w-[150px]"
         >
           {saving ? (
             <>
